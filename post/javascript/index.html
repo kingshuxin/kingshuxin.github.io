@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>JavaScript | Hsx</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://kingshuxin.github.io/favicon.ico?v=1664238670307">
+<link rel="stylesheet" href="https://kingshuxin.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="解释性语言，翻译一行，执行一行，不生成中间文件；
+单线程语言，先添加再删除
+异步执行
+HTML用双引号，JS用单引号
+//1.单行注释
+/*2.多行注释
+变量
+变量存在于内存
+变量不声明直接赋值也可以使用
+数据
+Number，Boolean..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://kingshuxin.github.io">
+        <img src="https://kingshuxin.github.io/images/avatar.png?v=1664238670307" class="site-logo">
+        <h1 class="site-title">Hsx</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Follow your heart.
+    </div>
+    <div class="site-footer">
+      ❤路敏雪 | <a class="rss" href="https://kingshuxin.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">JavaScript</h2>
+            <div class="post-date">2022-09-26</div>
+            
+            <div class="post-content" v-pre>
+              <p>解释性语言，翻译一行，执行一行，不生成中间文件；<br>
+单线程语言，先添加再删除<br>
+异步执行<br>
+HTML用双引号，JS用单引号<br>
+//1.单行注释<br>
+/*2.多行注释<br>
+变量<br>
+变量存在于内存<br>
+变量不声明直接赋值也可以使用</p>
+<p>数据<br>
+Number，Boolean，string，undefined，Null ，symbol  （简单数据类型/原始值）  存放到栈里<br>
+复杂数据类型：通过new关键字创建的对象，系统对象、自定义对象（Array、Object、Date）<br>
+存放到堆里，在栈里存放地址（十六进制）</p>
+<p>简单数据类型传的是值；<br>
+复杂类型传参传的是地址；</p>
+<p>Number<br>
+0-9，a-f.<br>
+程序里边数字前边加0表示八进制，前边加0x表示十六进制。<br>
+Infinity无穷大<br>
+Not a number -- NaN   不是一个数字<br>
+isNaN（）  判断是否为非数字</p>
+<p>String<br>
+转义字符，都是 \  开头<br>
+\n 换行符      \t  缩进   \b 空格<br>
+字符串长度  length<br>
+字符串拼接：字符串+其他类型（数值相加，字符相连！）</p>
+<p>Boolean<br>
+参与加法运算  true=1   false=0<br>
+Undefined<br>
+未定义数据类型   参与数字加法结果为NaN<br>
+Null<br>
+空值  参与数字相加为0</p>
+<p>typeof<br>
+检测变量类型  特殊：<code>typeof null = object</code></p>
+<p>数值类型转换<br>
+转化成字符串：toString()    String()  +''(隐式转换)</p>
+<p>转化成数字：<br>
+①parseInt（string）得到的是整数，并不进位；<br>
+例：  parseInt(120.23px)=120;	<br>
+②parseFloat(string)   得到的是小数，浮点数<br>
+例：  parseInt(120.23px)=120;<br>
+③Number('123')；<br>
+④利用算数计算，隐式转化,减乘除（没有加法）<br>
+'123'-'120'</p>
+<p>转换成布尔型<br>
+Boolean(  )；  '  '，0，NaN，null，undefined（5个为false）</p>
+<p>运算符<br>
+算术运算符   不能直接判断浮点数是否相等<br>
+==   默认转换类型，18=‘18’   （会把字符串类型转换为数字型）<br>
+===  必须值和数据类型都相同</p>
+<p>短路计算我会了！</p>
+<p>三元表达式<br>
+三元表达式？表达式1(true)  ：表达式2(false);</p>
+<p>switch<br>
+①采用===匹配，类型数值都一致；<br>
+②没有break，继续执行下一个case；<br>
+switch(e){<br>
+case value1：<br>
+执行语句1；<br>
+break；<br>
+case value2：<br>
+执行语句2；<br>
+break；<br>
+default：<br>
+执行默认语句；<br>
+}</p>
+<p>switch和if else区别：<br>
+case用于确定值，if else用于范围<br>
+switch效率高，有多少if else判断多少次</p>
+<p>for 循环多用来计数，while循环用来复杂判断<br>
+do while<br>
+do{<br>
+先执行语句，条件为true时重复执行<br>
+}while（）</p>
+<p>关键字<br>
+continue  退出本次循环，直接调到  i++， 执行下次循环<br>
+break 退出整个循环<br>
+return返回结果后终止函数，只能返回最后一个值，无return，返回undefined；</p>
+<p>数组<br>
+创建数组  var arr = []；    var  arr = new  Array()；<br>
+索引从0开始，arr[0];<br>
+length  属性是可以读写的，用‘empty’来填充，有空间，值为undefined</p>
+<p>函数<br>
+形参、实参个数不一致<br>
+实参&gt;形参：取到形参个数，多余实参不要<br>
+实参&lt;形参：多余形参是一个变量，但是没有接收值，为undefined</p>
+<p>利用new Funtion('参数1','参数2','函数体')；定义函数<br>
+var f = new Function('a','b','console.log(a+b)')</p>
+<p>arguments是函数内部对象，包含所有实参，一个伪数组<br>
+具有length属性<br>
+按照索引方式进行存储<br>
+没有真正数组的方法<br>
+作用域<br>
+全局作用域、局部作用域<br>
+函数内部没有声明直接赋值的变量也是全局变量<br>
+从执行效率看全局变量和局部变量：<br>
+全局变量只有浏览器关闭时才销毁，比较占内存资源<br>
+局部变量，当程序执行完毕就会销毁，只能在函数内部使用</p>
+<p>预编译<br>
+所有声明var、function都提升在当前作用域的最前边<br>
+只提升声明，不提升赋值！！！</p>
+<p>对象<br>
+var obj = new Object();      创建一个空对象</p>
+<p>利用构造函数创造对象：<br>
+function  构造函数名（）{<br>
+this.属性 = 值；<br>
+this.方法 = function （） {}<br>
+}<br>
+new 构造函数名（）；<br>
+构造函数名字首字母要大写；<br>
+不需要return，就可以返回对象<br>
+调用必须使用new<br>
+属性和方法前必须加  this</p>
+<p>for（key in obj）{<br>
+key------属性名<br>
+obj [k] -------属性值<br>
+}</p>
+<p>内置对象Math<br>
+Math.PI   圆周率<br>
+Math.floor()     向下取整<br>
+Math.ceil（）  向上取整<br>
+Math.round（） 四舍五入取整<br>
+Math.abs()   绝对值<br>
+Math.max()  Math.min()  最大值和最小值<br>
+Math.random（）随机数 [0,1)<br>
+两个数之间的随机整数<br>
+Math.floor (Math.random() * (max - min + 1) + min)</p>
+<p>内置对象Date<br>
+是一个构造函数，需要用new来调用！<br>
+Date（）无参数，返回当前时间<br>
++new Date()  返回总的毫秒数（时间戳）<br>
+H5新增：Date.now();</p>
+<p>内置对象数组Array<br>
+var  arr = new Array(2);    创建一个有2个空元素的数组<br>
+var arr = new Array(2, 3)   [2,3]<br>
+检测是否为数组<br>
+instanceof  返回true /  false   例：arr instanceof Array == true;<br>
+Array.isArray( )<br>
+添加删除数组元素<br>
+push(新元素)  末尾添加，push完返回新数组的长度<br>
+unshift(新元素)  头部添加 ，unshift 返回新数组的长度<br>
+pop（）  删除最后一个元素，返回删除的元素<br>
+shift（）删除第一个元素，返回删除的元素<br>
+数组排序<br>
+reverse（）无参数，翻转数组；<br>
+sort ()   （冒泡排序）<br>
+arr.sort(function(a,b){<br>
+return a - b;升序<br>
+return b - a;降序<br>
+})<br>
+数组元素索引<br>
+indexof(数组元素，[起始位置（可选参数）])  返回索引号    找不到返回 -1<br>
+lastIndexOf（数组元素，[起始位置（可选参数）]）从后往前找<br>
+数组转化成字符串<br>
+toString ();   用，隔开元素，无参数<br>
+join（分隔符）默认用，隔开元素，不传参数，默认以逗号隔开</p>
+<p>concat(arr1,arr2)   链接两个或多个数组，不影响原数组，返回新数组<br>
+slice(begin,end)   返回被截取的新数组——把类数组转化为数组<br>
+splice(第几个开始，要删除几个)，返回被删除后的新数组，影响原数组<br>
+filter	过滤函数元素，返回一个新数组<br>
+arr.filter(function(item,index,arr){<br>
+reture 判断条件（true则添加新数组，false则舍掉）<br>
+})</p>
+<p>some 查找数组中是否有符合条件的元素，返回Boolean值(如果找到目标值，就退出循环)<br>
+var flag = arr.some(function(item,index,arr){<br>
+return item == &quot;pink&quot;<br>
+})</p>
+<p>some和foreach区别：foreach找到目标元素不会停止循环<br>
+some和every区别:every一假即假,some:一真即真<br>
+reduce<br>
+arr.reduce(function(preValue,currentValue)=&gt;{<br>
+return preValue+currentValue;<br>
+})</p>
+<p>字符串对象<br>
+基本包装类型：String、Number、Boolean（先生成临时变量，再销毁）<br>
+字符串不可变，只改变地址，原内容还在，所以不要大量拼接字符串<br>
+indexOf、lastIndexOf     同数组方法<br>
+根据位置返回字符：<br>
+chartAt(index)<br>
+charCodeAt(index)  返回相应索引号的字符ASCII值，判断用户按键<br>
+数组方法  H5新增<br>
+concat(str1,str2...)     拼接多个字符串<br>
+substr(起始位置，截取几个字符)  截取某段，返回截取部分<br>
+replace（被替换，用来替换）  只会替换第一个字符<br>
+split('分隔符')   转换为数组，与join相反<br>
+toUpperCase()  转换大写<br>
+toLowerCase()  转换小写<br>
+trim 去除两侧空格，不去中间空格</p>
+<p>DOM<br>
+H5新增：<br>
+document.querySelector('选择器')            只选出第一个，选择器需要加符号<br>
+document.querySelectorAll('选择器')	  全部选出</p>
+<p>获取特殊元素：<br>
+获取body元素  document.body；<br>
+获取html元素  document.documentElement；<br>
+改变标签内容：<br>
+innerText   不识别html标签，去除空格和换行<br>
+innerHTML	相反地</p>
+<p>排他思想：先排除所有人，然后再单独设置自己的样式</p>
+<p>获取属性值：<br>
+element.属性			-------获取自带属性值<br>
+element.getAttribute('属性')      -------可以获取自定义属性<br>
+设置属性值：<br>
+element.属性= '值'<br>
+element.setAttribute('属性名','属性值')<br>
+移除属性：<br>
+element.removerAttribute('属性名')</p>
+<p>H5规定：自定义属性必须以data-   开头<br>
+新增获取自定义属性值：<br>
+element.dataset.属性名    /    element.dataset['属性名']<br>
+注：element.data是一个对象，自定义属性有多个-链接的单词时，获取要用驼峰命名法</p>
+<p>组织链接跳转添加JavaScript:void(0)或者JavaScript:;</p>
+<p>节点操作<br>
+node.parentNode	最近的一个父节点<br>
+node.childNodes		所有的子节点，包含元素节点、文本节点（一般不用）<br>
+node.children		所有的元素子节点,<br>
+node.firstChild		第一个子节点，包含文本节点，不用<br>
+node.lastChild		最后一个子节点，包含文本节点，不用<br>
+node.firstElementChild<br>
+node.lastElementChild  	实际开发：用children[  ]<br>
+node.nextSibling		下一个兄弟（文字）节点<br>
+node.previousSibling	上一个兄弟（文字）节点<br>
+node.nextElement	下一个元素兄弟节点<br>
+node.previousElement	上一个元素兄弟节点<br>
+document.createElement('标签名')<br>
+node.appendChild(child) 		子插入到父节点后边中<br>
+node.insertBefore(child,指定元素) 	在父节点中的指定元素前插入子<br>
+node.removeChild('child')		删除子元素<br>
+node.cloneNode()  		克隆完需要添加，参数为空或false，浅拷贝，不复制标签内容；为true深拷贝<br>
+添加元素：<br>
+创建元素<br>
+添加元素</p>
+<p>注册事件<br>
+①onclick   唯一性，后覆盖前<br>
+②addEventListener(事件类型，处理函数，Boolean)	同一事件可注册多个监听器<br>
+解绑事件<br>
+removeEventListener(事件类型，处理函数，Boolean) 		函数不需要调用（）</p>
+<p>Boolean为true--冒泡阶段<br>
+Boolean为false--捕获阶段，可选参数，默认为false</p>
+<p>DOM事件流<br>
+捕获阶段<br>
+当前目标阶段<br>
+冒泡阶段</p>
+<p>事件对象<br>
+event是一个事件对象，写在监听函数的小括号里，当形参来看<br>
+事件对象只有有了事件才会存在，系统自动创建，不需要传参<br>
+事件对象是我们与事件相关的一系列相关数据的集合<br>
+事件对象可以自己命名，e/event<br>
+window.event--ie678	兼容写法：e = e || window.event</p>
+<p>事件对象方法	<br>
+e.target	返回触发事件的对象（this返回绑定事件的对象,crrentTarget） 兼容：e.target||e.srcElement<br>
+e.type	返回事件类型<br>
+e.preventDefault()	阻止默认行为；或者 return falses(后边代码不执行)；</p>
+<p>阻止事件冒泡<br>
+e.stopPropagation();	e.cancelBubble = true;</p>
+<p>事件委托<br>
+原理：给父节点添加监听器，利用事件冒泡影响每一个子节点</p>
+<p>鼠标事件：<br>
+onfocus   获得焦点<br>
+onblur     失去焦点</p>
+<p>onmouseover  鼠标经过，经过自身、子盒子多次触发<br>
+onmouseout    鼠标离开</p>
+<p>onnouseenter	鼠标经过，只经过自身盒子触发（不会冒泡）<br>
+onmouseleave	鼠标离开（不会冒泡）</p>
+<p>contextmenu	取消默认的上下文菜单	e.preventDefault<br>
+selectstart	取消选中	配合e.preventDefault</p>
+<p>鼠标事件对象<br>
+clintX/Y	相对于可视窗口位置<br>
+pageX/Y	相对于页面文档位置<br>
+screenX/Y	相对于电脑屏幕位置</p>
+<p>键盘事件：<br>
+onkeyup		按键弹起<br>
+onkeydown		按键按下，文字还没有输入，弹起时才输入<br>
+onkeypress		按键按下（不识别功能键）<br>
+键盘事件对象：<br>
+key/keycode 	按了哪个键，up/down不区别大小写，press区分大小写</p>
+<p>input事件：<br>
+blur		失去焦点<br>
+focus	获得焦点<br>
+搜索框聚焦：search.focus()</p>
+<p>BOM<br>
+浏览器对象模型，用于页面交互。window对象是浏览器的顶级对象，具有双重角色<br>
+JS访问浏览器窗口的一个接口；<br>
+全局对象，定义在全局作用域下的变量、函数都是window对象的属性和方法；			一般省略window</p>
+<p>窗口事件<br>
+onload	窗口（所有内容）加载事件<br>
+DOMContentLoaded	仅DOM加载完毕，不包含图片，flash，css等，快<br>
+resize	窗口大小变化<br>
+window.innerWidth		当前窗口宽度</p>
+<p>定时器<br>
+页面中有很多定时器，要给定时器加名字，回调函数   callback</p>
+<p>setTimeout(调用函数，[延迟毫秒数])<br>
+clearTimeout(定时器名字)		清除定时器</p>
+<p>setInterval（调用函数，[间隔毫秒数]）<br>
+clearInterval(定时器名字)	注意要在全局定义定时器名字      var timer = null；</p>
+<p>缓动效果原理：<br>
+（目标值-现在位置）/ 10 做为每次移动距离步长</p>
+<p>this指向问题</p>
+<p>全局作用域、定时器指向window<br>
+指向调用者<br>
+构造函数中指向构造函数的实例</p>
+<p>同步任务在主线程执行，形成一个执行栈；<br>
+异步任务通过回调函数执行，在任务队列（消息队列）执行，有3种：<br>
+普通事件 	click、resize<br>
+资源加载	load、error<br>
+定时器		setInterval、setTimeout</p>
+<p>执行机制：<br>
+先执行栈中的同步任务<br>
+异步任务放在任务队列中<br>
+执行栈中的同步任务完事后，系统按次序读取任务队列中的异步任务，进入执行栈</p>
+<p>事件循环：主线程不断重复获得任务、执行任务，再获取执行</p>
+<p>location对象<br>
+href		获取或设置整个URL<br>
+host		主机<br>
+port		端口号<br>
+pathname	路径<br>
+search	参数<br>
+hash	锚点<br>
+location方法<br>
+assign（'地址'）	跟href一样，跳转页面，记录浏览历史，实现后退功能<br>
+replace（'地址'）	替换当前页面，不保留历史，无法后退<br>
+reload（）		重新加载</p>
+<p>navigator对象<br>
+userAgent	浏览器相关信息</p>
+<p>history对象<br>
+forward（）	前进<br>
+back()		后退<br>
+go(参数)		数字表示步数</p>
+<p>元素偏移量offset<br>
+动态获取元素位置、大小<br>
+offsetTop		相对带有定位的父元素上方偏移<br>
+offsetLeft		相对带有定位的父元素左方偏移<br>
+offsetwidth	元素宽度，包括padding、border、content，不带单位<br>
+offsetHeight	元素高度，包括padding、border、content，不带单位<br>
+offsetParent	返回带有定位的父级元素，没有返回body												       		（页面距离：e.pageX、e.pageY）<br>
+和style区别：<br>
+offset获得任意样式，style获得行内样式<br>
+offset不带单位，style带单位<br>
+style不包含padding、border<br>
+offsetwidth只能读，不能写；style.width能读能写<br>
+获取用offset，修改用style</p>
+<p>元素可视区	client<br>
+clientWidth/Height 		自身宽高度，包含padding、content，不包含border<br>
+clientTop/Left			返回元素上/左边框大小</p>
+<p>立即执行函数<br>
+(function() {}) ()<br>
+(function() {} ())<br>
+自己调用函数<br>
+第二个（）看做调用函数，用来传参，独立创建作用域</p>
+<p>scroll滚动<br>
+scrollWidth/Height		实际宽高度<br>
+scrollTop/Left			超出部分的高宽度<br>
+onscroll				滚动事件</p>
+<p>页面被卷去的头部：window.pageYOffset<br>
+左侧：window.pageXOffset</p>
+<p>移动端<br>
+touch	触屏事件<br>
+touchistart	触摸到DOM时<br>
+touchmouve	滑动时<br>
+touchend		移开时</p>
+<p>触摸事件对象	touchEvent<br>
+touches	所有正在触摸的手指列表<br>
+targetTouches*****	正在触摸当前DOM的手指列表<br>
+changedTouches	手指状态变化的列表（手指离开时只有这个）<br>
+第一个手指信息：targetTouches[0].pageX</p>
+<p>click事件300ms延迟问题解决方案：<br>
+禁止缩放	user-scalable = no;<br>
+touch事件封装<br>
+fastclick插件</p>
+<p>本地存储<br>
+window.sessionStorage<br>
+生命周期为关闭浏览器窗口<br>
+在同一个窗口下数据共享<br>
+以键值对形式存储<br>
+存储数据：sessionStorage.setItem('key',value);<br>
+读取数据：sessionStorage.getItem('key');<br>
+删除数据：sessionStorage.removeItem('key');<br>
+删除所有：sessionStorage.clear();</p>
+<p>window.localStorage<br>
+生命周期永久生效，除非手动删除<br>
+同一浏览器多窗口共享<br>
+以键值对形式存储<br>
+使用方法一致</p>
+<p>jQuery<br>
+入口函数<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>f</mi><mi>u</mi><mi>n</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo>(</mo><mo>)</mo><mrow></mrow><mo>)</mo><mi mathvariant="normal">页</mi><mi mathvariant="normal">面</mi><mi>D</mi><mi>O</mi><mi>M</mi><mi mathvariant="normal">加</mi><mi mathvariant="normal">载</mi><mi mathvariant="normal">完</mi><mi mathvariant="normal">成</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">入</mi><mi mathvariant="normal">口</mi><mi>j</mi><mi>q</mi><mi>u</mi><mi>e</mi><mi>r</mi><mi>y</mi><mi mathvariant="normal">对</mi><mi mathvariant="normal">象</mi><mi mathvariant="normal">：</mi><mi mathvariant="normal">伪</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">形</mi><mi mathvariant="normal">式</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">只</mi><mi mathvariant="normal">能</mi><mi mathvariant="normal">使</mi><mi mathvariant="normal">用</mi><mi>j</mi><mi>Q</mi><mi>u</mi><mi>e</mi><mi>r</mi><mi>y</mi><mi mathvariant="normal">方</mi><mi mathvariant="normal">法</mi><mi mathvariant="normal">转</mi><mi mathvariant="normal">化</mi><mi mathvariant="normal">成</mi><mi>D</mi><mi>O</mi><mi>M</mi><mi mathvariant="normal">对</mi><mi mathvariant="normal">象</mi><mi mathvariant="normal">：</mi></mrow><annotation encoding="application/x-tex">(function () {})	页面DOM加载完成的入口
+jquery对象：伪数组形式，只能使用jQuery方法
+转化成DOM对象：</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">u</span><span class="mord mathdefault">n</span><span class="mord mathdefault">c</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mopen">(</span><span class="mclose">)</span><span class="mord"></span><span class="mclose">)</span><span class="mord cjk_fallback">页</span><span class="mord cjk_fallback">面</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord cjk_fallback">加</span><span class="mord cjk_fallback">载</span><span class="mord cjk_fallback">完</span><span class="mord cjk_fallback">成</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">入</span><span class="mord cjk_fallback">口</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mord mathdefault">u</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">象</span><span class="mord cjk_fallback">：</span><span class="mord cjk_fallback">伪</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">形</span><span class="mord cjk_fallback">式</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">只</span><span class="mord cjk_fallback">能</span><span class="mord cjk_fallback">使</span><span class="mord cjk_fallback">用</span><span class="mord mathdefault" style="margin-right:0.05724em;">j</span><span class="mord mathdefault">Q</span><span class="mord mathdefault">u</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mord cjk_fallback">方</span><span class="mord cjk_fallback">法</span><span class="mord cjk_fallback">转</span><span class="mord cjk_fallback">化</span><span class="mord cjk_fallback">成</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord cjk_fallback">对</span><span class="mord cjk_fallback">象</span><span class="mord cjk_fallback">：</span></span></span></span>('')[0]	$('').get(0)</p>
+<p>选择器	$('css选择器')<br>
+设置样式	$('css选择器').css('样式','值')		隐式迭代，循环都执行相同操作<br>
+样式属性必须加' ',多个样式采用对象形式，可以不加''，值为数字可以不加单位</p>
+<p>筛选：<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mo>(</mo><mo mathvariant="normal">′</mo></msup><mi>l</mi><mi>i</mi><mo>:</mo><mi>f</mi><mi>i</mi><mi>s</mi><mi>r</mi><msup><mi>t</mi><mo mathvariant="normal">′</mo></msup><mo>)</mo><mi mathvariant="normal">第</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">个</mi></mrow><annotation encoding="application/x-tex">(&#x27;li:fisrt&#x27;)		第一个
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mopen"><span class="mopen">(</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord cjk_fallback">第</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">个</span></span></span></span>('li:last')		最后一个<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mo>(</mo><mo mathvariant="normal">′</mo></msup><mi>l</mi><mi>i</mi><mo>:</mo><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><msup><mi>x</mi><mo mathvariant="normal">′</mo></msup><mo>)</mo><mi mathvariant="normal">第</mi><mi>i</mi><mi>n</mi><mi>d</mi><mi>e</mi><mi>x</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">索</mi><mi mathvariant="normal">引</mi><mi mathvariant="normal">从</mi><mn>0</mn><mi mathvariant="normal">开</mi><mi mathvariant="normal">始</mi></mrow><annotation encoding="application/x-tex">(&#x27;li:index&#x27;)	第index个，索引从0开始
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mopen"><span class="mopen">(</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord cjk_fallback">第</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault">d</span><span class="mord mathdefault">e</span><span class="mord mathdefault">x</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">索</span><span class="mord cjk_fallback">引</span><span class="mord cjk_fallback">从</span><span class="mord">0</span><span class="mord cjk_fallback">开</span><span class="mord cjk_fallback">始</span></span></span></span>('li:odd')		奇数个<br>
+$('li:even')		偶数个<br>
+筛选方法：<br>
+parent()			查找父级<br>
+children(selector)	最近一级子元素<br>
+find(selector)		后代选择器<br>
+siblings(selector)	查找兄弟节点，不包括自身<br>
+nextAll()			之后所有元素<br>
+prevAll()			之前所有元素<br>
+eq(index)			选择第index个元素<br>
+hasClass()		返回boolean<br>
+设置类样式方法：（不影响其他类名）<br>
+addClass()		添加类<br>
+removeClass()		删除类<br>
+toggleClass()		切换类</p>
+<p>jQuery动画<br>
+show()	显示<br>
+hide()	隐藏<br>
+toggle()	切换<br>
+滑动<br>
+slideDown()	下滑<br>
+slideUp()		上拉<br>
+slideToggle()	切换<br>
+事件切换<br>
+.hover('经过函数'，'离开函数')	只写一个函数，经过和离开都会触发</p>
+<p>停止动画<br>
+stop()	必须写到动画前边<br>
+淡入淡出<br>
+fadeIn(时间)	淡入<br>
+fadeOut()		淡出<br>
+fadeToggle()	切换<br>
+fadeTo(时间，透明度)	<br>
+自定义动画animate<br>
+需改变样式（必须写）以对象形式传递<br>
+speed	（slow、normal、fast）<br>
+easing	切换效果，默认swing（linear）<br>
+回调函数	动画完成后执行一次<br>
+属性操作<br>
+获取属性	prop(&quot;属性名&quot;)<br>
+设置属性	prop(&quot;属性&quot;,&quot;属性值&quot;)<br>
+自定义属性读写	attr()<br>
+内存数据	data()	在DOM中看不到<br>
+内容文本值<br>
+html()		获取元素内容<br>
+html(&quot;内容&quot;)	设置元素内容<br>
+text()			获取元素文本<br>
+text(&quot;内容&quot;)	设置元素文本<br>
+val()			获取表单值<br>
+val(&quot;内容&quot;)	设置表单值<br>
+遍历元素<br>
+DOM：each(function(index,domEle))		第一个参数必须是索引号，与数组组合使用<br>
+数据：$.each(数据，function（）{})		处理数据<br>
+元素操作<br>
+创建元素	var li = $(&quot;dom元素&quot;)<br>
+添加元素	<br>
+内部添加	$(&quot;父级元素&quot;).append(li)	放后边		$(&quot;父级元素&quot;).prepend(li) 放前边<br>
+外部添加	element.before/after<br>
+删除元素<br>
+element.remove()	删自己<br>
+element.empty()	删所有子节点<br>
+element.html('''')	删所有元素<br>
+jQuery尺寸<br>
+width/height()	宽高<br>
+innerwidth/height()	+padding<br>
+outerwidth/height(true)	+padding+border+margin<br>
+参数为空，返回数字值；参数为数字，修改为参数值，不必写单位<br>
+jQuery位置<br>
+offset()		设置或返回相对于文档的偏移坐标，与父级无关，以文档为准<br>
+position()		获取相对于定位父级的偏移坐标，不能设置<br>
+scrollTop/Left()	滚动被卷去头部/左侧大小<br>
+jQuery事件（动态绑定）<br>
+多个事件注册	.on({<br>
+动作：functio {},<br>
+动作：functio {}<br>
+})</p>
+<p>事件委托<br>
+父级.on(&quot;动作&quot;,&quot;子级&quot;,function(){})</p>
+<p>事件解绑<br>
+off()		参数为空，接触所有事件；参数为事件名，只接触本事件；第2个参数解除事件委托<br>
+one()	事件只触发一次</p>
+<p>自动触发事件<br>
+.click();	不要on<br>
+.trigger(&quot;事件&quot;);<br>
+.triggerHandler(&quot;事件&quot;)	不会触发默认行为</p>
+<p>事件对象<br>
+stopPropation()		阻止冒泡<br>
+preventDefault()或return false		阻止默认行为</p>
+<p>拷贝对象<br>
+$.extend([deep],target,obj)	会覆盖原来属性值<br>
+deep:true为深拷贝，false为浅拷贝（深拷贝是对象不受影响，浅拷贝是地址受影响）默认为false</p>
+<p>多库共存，避免冲突<br>
+$=jQuery<br>
+var 自定义量 = jQuery.noConflict();</p>
+<p>闭包<br>
+当函数被定义时，和它周围状态的引用绑定在一起的组合<br>
+正常情况下，函数执行完，内部变量会被销毁<br>
+闭包存在时，内部函数没有执行完，外部函数的变量不会被销毁<br>
+应用：<br>
+封装一段代码</p>
+<p>ES6<br>
+ES5里，以function来划分作用域，大括号{}却限定不了var的作用域，我们把它叫做函数作用域<br>
+let<br>
+统治整个作用域，不能重复命名<br>
+形成块级作用域，不能变量提升，外边读不到<br>
+不影响作用域链<br>
+const<br>
+声明常量，一定要给初始值<br>
+一旦声明常量的值就不能更改<br>
+不能修改<br>
+形成块级作用域，不能变量提升，外边读不到<br>
+引用类型变量（数组、对象），指向数据所在的地址，可修改内部属性</p>
+<p>解构赋值<br>
+对（var let const）变量进行赋值<br>
+模式匹配：只要等号两边的模式相同，左边的变量就会被赋予对应的值。<br>
+把后续元素当成数组 如果 没有后续元素那么就是空数组<br>
+解构失败就是undefined右面的值少<br>
+不完全解构右面的值多<br>
+不是可遍历的结构，报错<br>
+默认赋值，只有右侧的值严格等于undefined的时候才生效。<br>
+惰性求值 只有在用到的时候，才会求值</p>
+<p>数组扩展<br>
+Array.form<br>
+定义在构造函数上<br>
+任何有length属性的对象，都可以通过Array.from方法转为数组<br>
+将数组的空位，转为undefined<br>
+如果参数是一个真数组，会返回一个一模一样的新数组（浅拷贝，只复制地址）<br>
+第二个参数，对每个元素进行处理然后放入返回的数组之中<br>
+let arrayLike = {'0':'a','1':'b','2':'c',length:3};<br>
+let arr1 = Array.prototype.slice.call(arrayLike);<br>
+let arr2 = Array.from(arrayLike);</p>
+<p>Array.of<br>
+返回参数值组成的数组。如果没有参数，就返回一个空数组<br>
+alert(Array.of(3)); //[3];<br>
+alert(Array.of(undefined)) //[undefined];</p>
+<p>copyWithin()<br>
+将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组<br>
+会修改当前数组<br>
+实例方法，在数组原型上<br>
+接受三个参数<br>
+target（必需）：从该位置开始替换数据<br>
+start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数<br>
+end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数</p>
+<p>find()<br>
+数组实例方法，用于找出第一个符合条件的数组成员。<br>
+参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined</p>
+<p>findIndex()<br>
+参数为函数<br>
+数组实例方法的用法<br>
+返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。</p>
+<p>fill()<br>
+使用给定值，填充一个数组<br>
+接受第二个参数和第三个参数，用于指定填充的起始位置和结束位置</p>
+<p>includes()<br>
+表示某个数组是否包含给定的值<br>
+Array.prototype.includes实例方法返回一个布尔值<br>
+和indexOf()的区别是，indexOf内使用严格的运算符，不能判断NaN</p>
+<p>flat()<br>
+降低数组维度，参数为所降低的数组深度，默认为1<br>
+flatMap()<br>
+arr.flatMap(item =&gt; [item*10]);  //flat和map的结合</p>
+<p>对象的扩展<br>
+ES6允许直接写入变量和函数，作为对象的属性和方法。<br>
+ES6允许在对象之中，只写属性名，不写属性值。这时，属性值等于属性名所代表的变量<br>
+Object.is()<br>
+用来比较两个值是否严格相等<br>
+（ES5比较两个值是否相等，只有两个运算符：相等运算符（<mark>）和严格相等运算符（</mark>=）。它们都有缺点，前者会自动转换数据类型，后者的NaN不等于自身，以及+0等于-0。）</p>
+<p>Object.assign()<br>
+对象合并 (其实是浅拷贝)<br>
+var target = {a:1};<br>
+var source1 = {b:2};<br>
+var source2 = {c:3};<br>
+Object.assign(target,source1,source2);<br>
+console.log(target);//{a: 1, b: 2, c: 3}</p>
+<p>Object.keys<br>
+返回一个数组，成员是参数对象自身的属性的键名<br>
+var obj = { foo: &quot;bar&quot;, baz: 42 };<br>
+Object.keys(obj)<br>
+// [&quot;foo&quot;, &quot;baz&quot;]</p>
+<p>Object.values<br>
+返回一个数组，成员是参数对象自身的属性的键值<br>
+var obj = { foo: &quot;bar&quot;, baz: 42 };<br>
+Object.values(obj)<br>
+// [&quot;bar&quot;, 42]</p>
+<p>Object.entries<br>
+返回一个数组，成员是参数对象自身的键值对数组<br>
+var obj = { foo: 'bar', baz: 42 };<br>
+Object.entries(obj)<br>
+// [ [&quot;foo&quot;, &quot;bar&quot;], [&quot;baz&quot;, 42] ]</p>
+<p>__proto__属性<br>
+Object.setPrototypeOf()（写操作）<br>
+Object.getPrototypeOf()（读操作）<br>
+Object.create()（生成操作）</p>
+<p>扩展运算符rest<br>
+在函数传参使用时，rest参数之后不能再有其他参数（即只能是最后一个参数），否则会报错。<br>
+//浅拷贝数组<br>
+var arr = [1,2,3];<br>
+var arr1 = [...arr];</p>
+<p>字符串扩展<br>
+模板字符串<code> </code><br>
+解析变量<br>
+let name = 'hsx';<br>
+let sayname = <code>myname is ${name}</code>;  //myname is hsx</p>
+<p>调用函数<br>
+function sayHello(){<br>
+return 'hello'<br>
+}</p>
+<p>let sayname = <code>myname is ${sayHello()}</code></p>
+<p>startsWith()、endsWith()<br>
+startsWith()  是否以参数字符串开头，<br>
+endsWith()  	是否以参数字符串结尾<br>
+let str = 'Hello hsx!'<br>
+let result = str.startsWith('Hello');  //true</p>
+<p>repeat()<br>
+将原先字符串重复参数次，返回新字符串<br>
+let str = 'hsx';<br>
+let str2 = str.repeat(2);  //'hsxhsx'</p>
+<p>箭头函数<br>
+如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分<br>
+如果箭头函数的代码块部分多于一条语句，就要使用大括号讲将他们括起来，并且使用return语句返回<br>
+由于大括号被解释为代码块 所以如果箭头函数直接返回一个对象的话必须加上一个大括号</p>
+<p>箭头函数有几个使用注意点：<br>
+（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<p>（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</p>
+<p>（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</p>
+<p>Class类<br>
+constructor 方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor方法，如果没有显式定义，一个空的constructor方法会被默认添加。<br>
+类的内部所有定义的方法，都是不可枚举的<br>
+类的实例共享一个原型对象</p>
+<p>this问题<br>
+constructor 里边的this指向new出来的实例<br>
+方法里边的this指向这个方法的调用者</p>
+<p>Class的继承<br>
+super关键字，它指代父类的实例（即父类的this对象）<br>
+子类必须在constructor方法最前中调用super方法<br>
+因为子类没有自己的this对象，而是继承父类的this对象<br>
+class Child extends Parent {<br>
+constructor (x) {<br>
+var a = super(x);<br>
+this.age = 24;<br>
+console.log(this.x,this.y);<br>
+}<br>
+toValue () {<br>
+console.log('Child toValue');<br>
+}<br>
+}</p>
+<p>var oC = new Child(1);</p>
+<p>Class的静态方法<br>
+类相当于实例的原型，所有在类中定义的方法，都会被实例继承。<br>
+如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用<br>
+静态方法也可以从super对象上调用，子类调用父类的static方法只能在静态函数中调用<br>
+不是静态方法，不用static<br>
+class Foo2 {<br>
+static classMethod() {<br>
+return 'Foo2 staic';<br>
+}<br>
+classMethod2(){<br>
+return &quot;不是静态&quot;<br>
+}<br>
+}</p>
+<p>class Bar2 extends Foo2 {<br>
+constructor () {<br>
+super();<br>
+}<br>
+static classMethod() {<br>
+console.log(super.classMethod() + ', too');<br>
+}<br>
+say() {<br>
+console.log(this.classMethod() + ', say');<br>
+}<br>
+}</p>
+<p>Object.setProperty	设置对象属性<br>
+Object.setProperty(目标对象obj,&quot;属性&quot;,配置项{<br>
+value：,//属性值<br>
+writable:Boolean,//是否可写<br>
+enumberable:Boolean,//是否可遍历<br>
+configurable:Boolean,//是否可配置<br>
+get a(){}<br>
+set a(val){}<br>
+})</p>
+<p>Object.defineProperty	定义对象属性</p>
+<p>取值函数（getter）和存值函数（setter）<br>
+class A{<br>
+constructor(){}<br>
+get a(){}<br>
+set a(val){}<br>
+}</p>
+<p>Set<br>
+类似于数组，但是成员的值都是唯一的，没有重复的值<br>
+Set 本身是一个构造函数，用来生成 Set 数据结构<br>
+const s = new Set();</p>
+<p>可以接受一个数组（或类似数组的对象）作为参数，用来初始化<br>
+去除数组重复成员的方法<br>
+[...new Set(array)]</p>
+<p>Set 结构的实例有以下属性<br>
+Set.prototype.constructor：构造函数，默认就是Set函数。<br>
+Set.prototype.size：返回Set实例的成员总数。<br>
+add(value)：添加某个值，返回Set结构本身<br>
+delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。<br>
+has(value)：返回一个布尔值，表示该值是否为Set的成员。<br>
+clear()：清除所有成员，没有返回值。<br>
+clear()：清除所有成员，没有返回值。<br>
+数组去重<br>
+const items = new Set([1, 2, 3, 4, 5]);<br>
+const array = Array.from(items);</p>
+<p>//from 把①含有length属性②能遍历的伪数组转化为真数组</p>
+<p>Set 结构的实例有四个遍历方法，可以用于遍历成员<br>
+keys()：返回键名的遍历器<br>
+values()：返回键值的遍历器<br>
+entries()：返回键值对的遍历器<br>
+forEach()：使用回调函数遍历每个成员<br>
+由于 Set 结构没有键名，只有键值（或者说键名和键值是同一个值），所以keys方法和values方法的行为完全一致。<br>
+Set结构的实例的forEach方法，用于对每个成员执行某种操作，没有返回值。</p>
+<p>map<br>
+Map结构提供了“值—值”的对应，是一种更完善的 Hash 结构实现<br>
+const m = new Map();<br>
+const o = {p: 'Hello World'};</p>
+<p>m.set(o, 'content')<br>
+m.get(o)</p>
+<p>Map 也可以接受一个数组作为参数。该数组的成员是一个个表示键值对的数组。<br>
+const map = new Map([<br>
+['name', '张三'],<br>
+['title', 'Author']<br>
+]);</p>
+<p>Map构造函数接受数组作为参数，实际上执行的是下面的算法。<br>
+const items = [<br>
+['name', '张三'],<br>
+['title', 'Author']<br>
+];<br>
+const map = new Map();<br>
+items.forEach(<br>
+([key, value]) =&gt; map.set(key, value)<br>
+);</p>
+<p>Set和Map都可以用来生成新的 Map。<br>
+const set = new Set([<br>
+['foo', 1],<br>
+['bar', 2]<br>
+]);<br>
+const m1 = new Map(set);<br>
+const m2 = new Map([['baz', 3]]);<br>
+const m3 = new Map(m2);</p>
+<p>如果对同一个键多次赋值，后面的值将覆盖前面的值。<br>
+const map = new Map();<br>
+map<br>
+.set(1, 'aaa')<br>
+.set(1, 'bbb');</p>
+<p>Map 结构的实例有以下属性和操作方法:<br>
+（1）size属性<br>
+size属性返回 Map 结构的成员总数。<br>
+（2）set(key, value)<br>
+set方法设置键名key对应的键值为value，然后返回整个 Map 结构。如果key已经有值，则键值会被更新，否则就新生成该键。<br>
+set方法返回的是当前的Map对象，因此可以采用链式写法。<br>
+（3）get(key)<br>
+get方法读取key对应的键值，如果找不到key，返回undefined。<br>
+（4）has(key)<br>
+has方法返回一个布尔值，表示某个键是否在当前 Map 对象之中。<br>
+（5）delete(key)<br>
+delete方法删除某个键，返回true。如果删除失败，返回false。<br>
+（6）clear()<br>
+clear方法清除所有成员，没有返回值。</p>
+<p>遍历方法<br>
+Map 结构原生提供三个遍历器生成函数和一个遍历方法。<br>
+keys()：返回键名的遍历器。<br>
+values()：返回键值的遍历器。<br>
+entries()：返回所有成员的遍历器。<br>
+forEach()：遍历 Map 的所有成员。</p>
+<p>promise<br>
+异步编程<br>
+一个对象，从它可以获取异步操作的消息<br>
+三种状态：Pending（进行中）、Resolved（已完成，又称 Fulfilled）和Rejected（已失败）<br>
+Promise实例生成以后，可以用then方法分别指定Resolved状态和Reject状态的回调函数<br>
+function loadImageAsync(url) {<br>
+return new Promise(function(resolve, reject) {<br>
+var image = new Image();</p>
+<pre><code>image.onload = function() {
+  resolve(image);
+};
+
+image.onerror = function() {
+  reject(new Error('Could not load image at ' + url));
+};
+
+image.src = url;
+</code></pre>
+<p>});<br>
+}</p>
+<p>技术难点<br>
+this<br>
+默认绑定：全局调用函数或没有主体调用，this—&gt;window对象（严格模式下，undefined）<br>
+（立即执行函数、定时器）<br>
+隐藏绑定：一个对象调用自己方法时，this—&gt;自己<br>
+（事件绑定）<br>
+构造函数绑定：this—&gt;new出来的实例</p>
+<p>改变this指向<br>
+①call方法<br>
+function.call(目标this,参数1,参数2)</p>
+<p>call的另个主要作用——继承<br>
+function Father (name){<br>
+this.name = name;<br>
+dowork(){<br>
+}<br>
+}</p>
+<p>function Son (name){<br>
+Father.call(this,name)<br>
+Father.dowork.call(this);<br>
+}<br>
+var son = new Son('hsx');</p>
+<p>②apply<br>
+不同：参数写成数组形式<br>
+function.call(目标this,[参数1,参数2])</p>
+<p>apply的另个主要作用，处理数组。例如求数组元素最大值<br>
+Math.Max.apply(null/null,[arr])</p>
+<p>③bind<br>
+和call区别：bind不调用函数，返回由其改变this和参数后的函数拷贝<br>
+var f = function.bind(目标this,参数1,参数2);<br>
+f();</p>
+<p>bind的用途2：改变函数this指向，而不要立刻调用函数。<br>
+例如：发送验证码按钮，点击后禁用，30秒再启用<br>
+var btn = document.getElementByTagName('button');<br>
+btn.addEventListener('click',function(){<br>
+this.disabled = true;<br>
+setTimeOut(function(){<br>
+this.disabled = false //此处this指向window<br>
+}.bind(this),3000)//此处this指向按钮对象<br>
+})</p>
+<p>构造函数、实例、原型对象的关系</p>
+<p>严格模式<br>
+为脚本开启严格模式<br>
+所有语句前添加''use strict&quot;<br>
+或把整个脚本放到立即执行函数中，再添加<br>
+2.为函数开启严格模式<br>
+函数代码块前添加''use strict&quot;</p>
+<p>严格模式的变化<br>
+变量必须先声明再使用<br>
+声明的变量不能随便删除<br>
+全局作用域下，this不是window而是undefined<br>
+构造函数不加new调用，this会报错<br>
+函数不能有重复参数<br>
+不允许在非代码块内定义函数</p>
+<p>图片懒加载<br>
+①给鼠标scroll添加滚动事件，然后判断图片到视窗上边的距离小于浏览器窗口显示区高度时，再给图片添加图片src资源</p>
+<p>window.innerHeight			获取浏览器窗口显示区高度<br>
+getDoundingclientRect.top()	图片到视窗上边的距离</p>
+<p>②InterSectionObserver实例<br>
+浏览器提供的构造函数<br>
+const images = document.querySelectorAll('img');<br>
+const observer = new InterSectionObserver(callback);//创建观察者实例</p>
+<p>const callback = entries =&gt; {<br>
+entries.forEach( entry =&gt;{<br>
+if(entry.isIntersecting){  //判断图片是否进入浏览器可视窗口<br>
+const image = entry.target;//获取此时的照片<br>
+const data_src = image.getAttribute('data_src');<br>
+image.setAttribute('src',data.src);//给图片添加url<br>
+observer.unobserve('image');//停止观察<br>
+}<br>
+})<br>
+}</p>
+<p>images.forEach(image =&gt;{<br>
+observer.observe(image);//给图片添加观察者观察事件<br>
+})</p>
+<p>防抖<br>
+将多次操作变成一次<br>
+function fangdou (){<br>
+let timer = null;<br>
+return function(){<br>
+clearTimeout(timer);<br>
+timer = setTimeout('请求函数','延迟时间')<br>
+}<br>
+}</p>
+<p>注意：此时形成闭包，return后的fun的this指向window，可以使用箭头函数把this绑定给原this</p>
+<p>节流<br>
+一段时间内只调用一次请求</p>
+<p>迭代器</p>
+<p>跨域<br>
+浏览器的同源策略，协议、主机、端口号都一致才算同源<br>
+JSONP<br>
+利用<script>的允许请求别处资源的特性，只支持get，不支持post<br>
+CORS<br>
+在服务器端设置<br>
+Access-Control-Allow-Origin:*;</p>
+<p>反向代理</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://kingshuxin.github.io/post/mian-shi/">
+                  <h3 class="post-title">
+                    面试
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

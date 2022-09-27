@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>E-charts | Hsx</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://kingshuxin.github.io/favicon.ico?v=1664238670307">
+<link rel="stylesheet" href="https://kingshuxin.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="
+初始化echarts实例对象
+
+var myChart = echarts.init(document.getElementById('main'));
+
+
+指定配置项和数据(option)
+
+var option = {
+    xAx..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://kingshuxin.github.io">
+        <img src="https://kingshuxin.github.io/images/avatar.png?v=1664238670307" class="site-logo">
+        <h1 class="site-title">Hsx</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Follow your heart.
+    </div>
+    <div class="site-footer">
+      ❤路敏雪 | <a class="rss" href="https://kingshuxin.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">E-charts</h2>
+            <div class="post-date">2022-08-31</div>
+            
+            <div class="post-content" v-pre>
+              <ol>
+<li>初始化echarts实例对象</li>
+</ol>
+<pre><code class="language-js">var myChart = echarts.init(document.getElementById('main'));
+</code></pre>
+<ol start="2">
+<li>指定配置项和数据(option)</li>
+</ol>
+<pre><code class="language-js">var option = {
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line'
+    }]
+};
+</code></pre>
+<ol start="3">
+<li>将配置项设置给echarts实例对象</li>
+</ol>
+<pre><code class="language-js">myChart.setOption(option);
+</code></pre>
+<h3 id="11-echarts-基础配置">11-Echarts-基础配置</h3>
+<ul>
+<li>
+<p>series</p>
+<ul>
+<li>系列列表。每个系列通过 <code>type</code> 决定自己的图表类型</li>
+<li>大白话：图标数据，指定什么类型的图标，可以多个图表重叠。</li>
+</ul>
+</li>
+<li>
+<p>xAxis：直角坐标系 grid 中的 x 轴</p>
+<ul>
+<li>boundaryGap: 坐标轴两边留白策略 true，这时候刻度只是作为分隔线，标签和数据点都会在两个刻度之间的带(band)中间。</li>
+</ul>
+</li>
+<li>
+<p>yAxis：直角坐标系 grid 中的 y 轴</p>
+</li>
+<li>
+<p>grid：直角坐标系内绘图网格。</p>
+</li>
+<li>
+<p>title：标题组件</p>
+</li>
+<li>
+<p>tooltip：提示框组件</p>
+</li>
+<li>
+<p>legend：图例组件</p>
+</li>
+<li>
+<p>color：调色盘颜色列表</p>
+<p>数据堆叠，同个类目轴上系列配置相同的<code>stack</code>值后 后一个系列的值会在前一个系列的值上相加。</p>
+</li>
+</ul>
+<pre><code class="language-javascript">option = {
+    // color设置我们线条的颜色 注意后面是个数组
+    color: ['pink', 'red', 'green', 'skyblue'],
+    // 设置图表的标题
+    title: {
+        text: '折线图堆叠123'
+    },
+    // 图表的提示框组件 
+    tooltip: {
+        // 触发方式
+        trigger: 'axis'
+    },
+    // 图例组件
+    legend: {
+       // series里面有了 name值则 legend里面的data可以删掉
+    },
+    // 网格配置  grid可以控制线形图 柱状图 图表大小
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        // 是否显示刻度标签 如果是true 就显示 否则反之
+        containLabel: true
+    },
+    // 工具箱组件  可以另存为图片等功能
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    // 设置x轴的相关配置
+    xAxis: {
+        type: 'category',
+        // 是否让我们的线条和坐标轴有缝隙
+        boundaryGap: false,
+        data: ['星期一', '周二', '周三', '周四', '周五', '周六', '周日']
+    },
+     // 设置y轴的相关配置
+    yAxis: {
+        type: 'value'
+    },
+    // 系列图表配置 它决定着显示那种类型的图表
+    series: [
+        {
+            name: '邮件营销',
+            type: 'line',
+           
+            data: [120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name: '联盟广告',
+            type: 'line',
+
+            data: [220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name: '视频广告',
+            type: 'line',
+          
+            data: [150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+            name: '直接访问',
+            type: 'line',
+          
+            data: [320, 332, 301, 334, 390, 330, 320]
+        }
+    ]
+};
+
+</code></pre>
+<h3 id="12-柱状图图表两大步骤">12- 柱状图图表（两大步骤）</h3>
+<ul>
+<li>官网找到类似实例， 适当分析，并且引入到HTML页面中</li>
+<li>根据需求定制图表</li>
+</ul>
+<ol>
+<li>引入到html页面中</li>
+</ol>
+<pre><code class="language-javascript">// 柱状图1模块
+(function() {
+  // 实例化对象
+  let myChart = echarts.init(document.querySelector(&quot;.bar .chart&quot;));
+  // 指定配置和数据
+  let option = {
+    color: [&quot;#3398DB&quot;],
+    tooltip: {
+      trigger: &quot;axis&quot;,
+      axisPointer: {
+        // 坐标轴指示器，坐标轴触发有效
+        type: &quot;shadow&quot; // 默认为直线，可选为：'line' | 'shadow'
+      }
+    },
+    grid: {
+      left: &quot;3%&quot;,
+      right: &quot;4%&quot;,
+      bottom: &quot;3%&quot;,
+      containLabel: true
+    },
+    xAxis: [
+      {
+        type: &quot;category&quot;,
+        data: [&quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;],
+        axisTick: {
+          alignWithLabel: true
+        }
+      }
+    ],
+    yAxis: [
+      {
+        type: &quot;value&quot;
+      }
+    ],
+    series: [
+      {
+        name: &quot;直接访问&quot;,
+        type: &quot;bar&quot;,
+        barWidth: &quot;60%&quot;,
+        data: [10, 52, 200, 334, 390, 330, 220]
+      }
+    ]
+  };
+
+  // 把配置给实例对象
+  myChart.setOption(option);
+})();
+</code></pre>
+<ol start="2">
+<li>
+<p>根据需求定制</p>
+<ul>
+<li>
+<p>修改图表柱形颜色  #2f89cf</p>
+</li>
+<li>
+<p>修改图表大小  top 为 10px   bottom 为  4%    grid决定我们的柱状图的大小</p>
+</li>
+</ul>
+<pre><code class="language-JavaScript"></code></pre>
+</li>
+</ol>
+<p>color: [&quot;#2f89cf&quot;],<br>
+grid: {<br>
+left: &quot;0%&quot;,<br>
+top: &quot;10px&quot;,<br>
+right: &quot;0%&quot;,<br>
+bottom: &quot;4%&quot;,<br>
+containLabel: true<br>
+},</p>
+<pre><code>
+- X轴相关设置  xAxis
+  - 文本颜色设置为   rgba(255,255,255,.6)   字体大小为 12px
+  - X轴线的样式 不显示
+
+~~~JavaScript
+// 设置x轴标签文字样式
+// x轴的文字颜色和大小
+     axisLabel: {
+       color: &quot;rgba(255,255,255,.6)&quot;,
+       fontSize: &quot;12&quot;
+     },
+//  x轴样式不显示
+axisLine: {
+    show: false
+    // 如果想要设置单独的线条样式 
+    // lineStyle: {
+    //    color: &quot;rgba(255,255,255,.1)&quot;,
+    //    width: 1,
+    //    type: &quot;solid&quot;
+   }
+}
+</code></pre>
+<ul>
+<li>Y 轴相关定制
+<ul>
+<li>文本颜色设置为   rgba(255,255,255,.6)   字体大小为 12px</li>
+<li>Y 轴线条样式 更改为  1像素的  rgba(255,255,255,.1) 边框</li>
+<li>分隔线的颜色修饰为  1像素的  rgba(255,255,255,.1)</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-JavaScript">// y 轴文字标签样式
+axisLabel: {
+   color: &quot;rgba(255,255,255,.6)&quot;,
+    fontSize: &quot;12&quot;
+},
+// y轴线条样式
+axisLine: {
+   lineStyle: {
+      color: &quot;rgba(255,255,255,.1)&quot;,
+      // width: 1,
+      // type: &quot;solid&quot;
+   }
+5232},
+// y 轴分隔线样式
+splitLine: {
+ lineStyle: {
+    color: &quot;rgba(255,255,255,.1)&quot;
+  }
+}
+</code></pre>
+<ul>
+<li>修改柱形为圆角以及柱子宽度  series 里面设置</li>
+</ul>
+<pre><code class="language-JavaScript">series: [
+   {
+     name: &quot;直接访问&quot;,
+     type: &quot;bar&quot;,
+     // 修改柱子宽度
+     barWidth: &quot;35%&quot;,
+     data: [10, 52, 200, 334, 390, 330, 220],
+     itemStyle: {
+       // 修改柱子圆角
+       barBorderRadius: 5
+     }
+   }
+ ]
+};
+</code></pre>
+<ul>
+<li>更换对应数据</li>
+</ul>
+<pre><code class="language-JavaScript">// x轴中更换data数据
+data: [ &quot;旅游行业&quot;,&quot;教育培训&quot;, &quot;游戏行业&quot;, &quot;医疗行业&quot;, &quot;电商行业&quot;, &quot;社交行业&quot;, &quot;金融行业&quot; ],
+// series 更换数据
+data: [200, 300, 300, 900, 1500, 1200, 600]
+</code></pre>
+<ul>
+<li>让图表跟随屏幕自适应</li>
+</ul>
+<pre><code class="language-javascript">  window.addEventListener(&quot;resize&quot;, function() {
+    myChart.resize();
+  });
+</code></pre>
+<h3 id="13-柱状图2定制">13-柱状图2定制</h3>
+<ul>
+<li>官网找到类似实例， 适当分析，并且引入到HTML页面中</li>
+<li>根据需求定制图表</li>
+</ul>
+<p>需求1： 修改图形大小 grid</p>
+<pre><code class="language-javascript">  // 图标位置
+    grid: {
+      top: &quot;10%&quot;,
+      left: &quot;22%&quot;,
+      bottom: &quot;10%&quot;
+    },
+</code></pre>
+<p>需求2： 不显示x轴</p>
+<pre><code class="language-javascript">   xAxis: {
+      show: false
+    },
+</code></pre>
+<p>需求3： y轴相关定制</p>
+<ul>
+<li>不显示y轴线和相关刻度</li>
+</ul>
+<pre><code class="language-javascript">//不显示y轴线条
+axisLine: {
+    show: false
+        },
+// 不显示刻度
+axisTick: {
+   show: false
+},
+</code></pre>
+<ul>
+<li>y轴文字的颜色设置为白色</li>
+</ul>
+<pre><code class="language-javascript">   axisLabel: {
+          color: &quot;#fff&quot;
+   },
+</code></pre>
+<p>需求4： 修改第一组柱子相关样式（条状）</p>
+<pre><code class="language-javascript">name: &quot;条&quot;,
+// 柱子之间的距离
+barCategoryGap: 50,
+//柱子的宽度
+barWidth: 10,
+// 柱子设为圆角
+itemStyle: {
+    normal: {
+      barBorderRadius: 20,       
+    }
+},
+</code></pre>
+<ul>
+<li>设置第一组柱子内百分比显示数据</li>
+</ul>
+<pre><code class="language-javascript">// 图形上的文本标签
+label: {
+    normal: {
+         show: true,
+         // 图形内显示
+         position: &quot;inside&quot;,
+         // 文字的显示格式
+         formatter: &quot;{c}%&quot;
+     }
+},
+</code></pre>
+<ul>
+<li>设置第一组柱子不同颜色</li>
+</ul>
+<pre><code class="language-javascript">// 声明颜色数组
+var myColor = [&quot;#1089E7&quot;, &quot;#F57474&quot;, &quot;#56D0E3&quot;, &quot;#F8B448&quot;, &quot;#8B78F6&quot;];
+// 2. 给 itemStyle  里面的color 属性设置一个 返回值函数
+  itemStyle: {
+          normal: {
+            barBorderRadius: 20,  
+            // params 传进来的是柱子对象
+            console.log(params);
+            // dataIndex 是当前柱子的索引号
+            return myColor[params.dataIndex];
+          }
+         
+},
+</code></pre>
+<p>需求5： 修改第二组柱子的相关配置（框状）</p>
+<pre><code class="language-javascript">  	    name: &quot;框&quot;,
+        type: &quot;bar&quot;,
+        barCategoryGap: 50,
+        barWidth: 15,
+        itemStyle: {
+            color: &quot;none&quot;,
+            borderColor: &quot;#00c1de&quot;,
+            borderWidth: 3,
+            barBorderRadius: 15
+        },
+        data: [19325, 23438, 31000, 121594, 134141, 681807]
+      }
+</code></pre>
+<p>需求6： 给y轴添加第二组数据</p>
+<pre><code class="language-javascript">yAxis: [
+      {
+      type: &quot;category&quot;,
+      data: [&quot;印尼&quot;, &quot;美国&quot;, &quot;印度&quot;, &quot;中国&quot;, &quot;世界人口(万)&quot;],
+      // 不显示y轴的线
+      axisLine: {
+        show: false
+      },
+      // 不显示刻度
+      axisTick: {
+        show: false
+      },
+      // 把刻度标签里面的文字颜色设置为白色
+      axisLabel: {
+        color: &quot;#fff&quot;
+      }
+    },
+      {
+        show: true,
+        data: [702, 350, 610, 793, 664],
+           // 不显示y轴的线
+      axisLine: {
+        show: false
+      },
+      // 不显示刻度
+      axisTick: {
+        show: false
+      },
+        axisLabel: {
+          textStyle: {
+            fontSize: 12,
+            color: &quot;#fff&quot;
+          }
+        }
+      }
+    ],
+</code></pre>
+<p>需求7： 设置两组柱子层叠以及更换数据</p>
+<pre><code class="language-javascript">// 给series  第一个对象里面的 添加 
+yAxisIndex: 0,
+// 给series  第二个对象里面的 添加 
+yAxisIndex: 1,
+// series 第一个对象里面的data
+data: [70, 34, 60, 78, 69],
+// series 第二个对象里面的data
+data: [100, 100, 100, 100, 100],
+// y轴更换第一个对象更换data数据
+data: [&quot;HTML5&quot;, &quot;CSS3&quot;, &quot;javascript&quot;, &quot;VUE&quot;, &quot;NODE&quot;],
+// y轴更换第二个对象更换data数据
+data:[702, 350, 610, 793, 664],
+</code></pre>
+<p>完整代码：</p>
+<pre><code class="language-javascript">// 柱状图2
+(function() {
+  var myColor = [&quot;#1089E7&quot;, &quot;#F57474&quot;, &quot;#56D0E3&quot;, &quot;#F8B448&quot;, &quot;#8B78F6&quot;];
+  // 1. 实例化对象
+  var myChart = echarts.init(document.querySelector(&quot;.bar2 .chart&quot;));
+  // 2. 指定配置和数据
+  var option = {
+    grid: {
+      top: &quot;10%&quot;,
+      left: &quot;22%&quot;,
+      bottom: &quot;10%&quot;
+      // containLabel: true
+    },
+    // 不显示x轴的相关信息
+    xAxis: {
+      show: false
+    },
+    yAxis: [
+      {
+        type: &quot;category&quot;,
+        inverse: true,
+        data: [&quot;HTML5&quot;, &quot;CSS3&quot;, &quot;javascript&quot;, &quot;VUE&quot;, &quot;NODE&quot;],
+        // 不显示y轴的线
+        axisLine: {
+          show: false
+        },
+        // 不显示刻度
+        axisTick: {
+          show: false
+        },
+        // 把刻度标签里面的文字颜色设置为白色
+        axisLabel: {
+          color: &quot;#fff&quot;
+        }
+      },
+      {
+        data: [702, 350, 610, 793, 664],
+        inverse: true,
+        // 不显示y轴的线
+        axisLine: {
+          show: false
+        },
+        // 不显示刻度
+        axisTick: {
+          show: false
+        },
+        // 把刻度标签里面的文字颜色设置为白色
+        axisLabel: {
+          color: &quot;#fff&quot;
+        }
+      }
+    ],
+    series: [
+      {
+        name: &quot;条&quot;,
+        type: &quot;bar&quot;,
+        data: [70, 34, 60, 78, 69],
+        yAxisIndex: 0,
+        // 修改第一组柱子的圆角
+        itemStyle: {
+          barBorderRadius: 20,
+          // 此时的color 可以修改柱子的颜色
+          color: function(params) {
+            // params 传进来的是柱子对象
+            console.log(params);
+            // dataIndex 是当前柱子的索引号
+            return myColor[params.dataIndex];
+          }
+        },
+        // 柱子之间的距离
+        barCategoryGap: 50,
+        //柱子的宽度
+        barWidth: 10,
+        // 显示柱子内的文字
+        label: {
+          show: true,
+          position: &quot;inside&quot;,
+          // {c} 会自动的解析为 数据  data里面的数据
+          formatter: &quot;{c}%&quot;
+        }
+      },
+      {
+        name: &quot;框&quot;,
+        type: &quot;bar&quot;,
+        barCategoryGap: 50,
+        barWidth: 15,
+        yAxisIndex: 1,
+        data: [100, 100, 100, 100, 100],
+        itemStyle: {
+          color: &quot;none&quot;,
+          borderColor: &quot;#00c1de&quot;,
+          borderWidth: 3,
+          barBorderRadius: 15
+        }
+      }
+    ]
+  };
+
+  // 3. 把配置给实例对象
+  myChart.setOption(option);
+})();
+
+</code></pre>
+<h3 id="14-折线图1-人员变化模块制作">14-折线图1 人员变化模块制作</h3>
+<ul>
+<li>官网找到类似实例， 适当分析，并且引入到HTML页面中</li>
+<li>根据需求定制图表</li>
+</ul>
+<p>需求1： 修改折线图大小，显示边框设置颜色：#012f4a，并且显示刻度标签。</p>
+<pre><code class="language-js">    // 设置网格样式
+    grid: { 
+      top: '20%',
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      show: true,// 显示边框
+      borderColor: '#012f4a',// 边框颜色
+      containLabel: true // 包含刻度文字在内
+    },
+</code></pre>
+<p>需求2： 修改图例组件中的文字颜色 #4c9bfd， 距离右侧 right 为 10%</p>
+<pre><code class="language-javascript"> // 图例组件
+    legend: {
+      textStyle: {
+        color: '#4c9bfd' // 图例文字颜色
+      },
+      right: '10%' // 距离右边10%
+    },
+</code></pre>
+<p>需求3： x轴相关配置</p>
+<ul>
+<li>刻度去除</li>
+<li>x轴刻度标签字体颜色：#4c9bfd</li>
+<li>剔除x坐标轴线颜色（将来使用Y轴分割线)</li>
+<li>轴两端是不需要内间距 boundaryGap</li>
+</ul>
+<pre><code class="language-javascript">    xAxis: {
+      type: 'category',
+      data: [&quot;周一&quot;, &quot;周二&quot;],
+	  axisTick: {
+         show: false // 去除刻度线
+       },
+       axisLabel: {
+         color: '#4c9bfd' // 文本颜色
+       },
+       axisLine: {
+         show: false // 去除轴线
+       },
+       boundaryGap: false  // 去除轴内间距
+    },
+</code></pre>
+<p>需求4： y轴的定制</p>
+<ul>
+<li>刻度去除</li>
+<li>字体颜色：#4c9bfd</li>
+<li>分割线颜色：#012f4a</li>
+</ul>
+<pre><code class="language-javascript">    yAxis: {
+      type: 'value',
+      axisTick: {
+        show: false  // 去除刻度
+      },
+      axisLabel: {
+        color: '#4c9bfd' // 文字颜色
+      },
+      splitLine: {
+        lineStyle: {
+          color: '#012f4a' // 分割线颜色
+        }
+      }
+    },
+</code></pre>
+<p>需求5： 两条线形图定制</p>
+<ul>
+<li>颜色分别：#00f2f1  #ed3f35</li>
+<li>把折线修饰为圆滑 series 数据中添加 smooth 为 true</li>
+</ul>
+<pre><code class="language-js">    color: ['#00f2f1', '#ed3f35'],
+	series: [{
+      name:'新增粉丝',
+      data: [820, 932, 901, 934, 1290, 1330, 1320],
+      type: 'line',
+      // 折线修饰为圆滑
+      smooth: true,
+      },{
+      name:'新增游客',
+      data: [100, 331, 200, 123, 233, 543, 400],
+      type: 'line',
+      smooth: true,
+    }]
+</code></pre>
+<p>需求6： 配置数据</p>
+<pre><code class="language-js">// x轴的文字
+xAxis: {
+  type: 'category',
+  data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+</code></pre>
+<pre><code class="language-js">// 图标数据
+    series: [{
+      name:'新增粉丝',
+      data:  [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
+      type: 'line',
+      smooth: true
+    },{
+      name:'新增游客',
+      data: [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79],     
+      type: 'line',
+      smooth: true
+      }
+    }]
+</code></pre>
+<p>需求7： 新增需求  点击 2020年   2021年 数据发生变化</p>
+<p>以下是后台送过来数据（ajax请求过来的）</p>
+<pre><code class="language-javascript"> var yearData = [
+      {
+        year: '2020',  // 年份
+        data: [  // 两个数组是因为有两条线
+             [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
+             [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79]
+          ]
+      },
+      {
+        year: '2021',  // 年份
+        data: [  // 两个数组是因为有两条线
+             [123, 175, 112, 197, 121, 67, 98, 21, 43, 64, 76, 38],
+     		[143, 131, 165, 123, 178, 21, 82, 64, 43, 60, 19, 34]
+          ]
+      }
+     ];
+</code></pre>
+<ul>
+<li>tab栏切换事件</li>
+<li>点击2020按钮   需要把 series 第一个对象里面的data  换成  2020年对象里面data[0]</li>
+<li>点击2020按钮   需要把 series 第二个对象里面的data  换成  2020年对象里面data[1]</li>
+<li>2021 按钮同样道理</li>
+</ul>
+<p>完整代码：</p>
+<pre><code class="language-javascript">// 折线图1模块制作
+(function() {
+  var yearData = [
+    {
+      year: &quot;2020&quot;, // 年份
+      data: [
+        // 两个数组是因为有两条线
+        [24, 40, 101, 134, 90, 230, 210, 230, 120, 230, 210, 120],
+        [40, 64, 191, 324, 290, 330, 310, 213, 180, 200, 180, 79]
+      ]
+    },
+    {
+      year: &quot;2021&quot;, // 年份
+      data: [
+        // 两个数组是因为有两条线
+        [123, 175, 112, 197, 121, 67, 98, 21, 43, 64, 76, 38],
+        [143, 131, 165, 123, 178, 21, 82, 64, 43, 60, 19, 34]
+      ]
+    }
+  ];
+  // 1. 实例化对象
+  var myChart = echarts.init(document.querySelector(&quot;.line .chart&quot;));
+  // 2.指定配置
+  var option = {
+    // 通过这个color修改两条线的颜色
+    color: [&quot;#00f2f1&quot;, &quot;#ed3f35&quot;],
+    tooltip: {
+      trigger: &quot;axis&quot;
+    },
+    legend: {
+      // 如果series 对象有name 值，则 legend可以不用写data
+      // 修改图例组件 文字颜色
+      textStyle: {
+        color: &quot;#4c9bfd&quot;
+      },
+      // 这个10% 必须加引号
+      right: &quot;10%&quot;
+    },
+    grid: {
+      top: &quot;20%&quot;,
+      left: &quot;3%&quot;,
+      right: &quot;4%&quot;,
+      bottom: &quot;3%&quot;,
+      show: true, // 显示边框
+      borderColor: &quot;#012f4a&quot;, // 边框颜色
+      containLabel: true // 包含刻度文字在内
+    },
+
+    xAxis: {
+      type: &quot;category&quot;,
+      boundaryGap: false,
+      data: [
+        &quot;1月&quot;,
+        &quot;2月&quot;,
+        &quot;3月&quot;,
+        &quot;4月&quot;,
+        &quot;5月&quot;,
+        &quot;6月&quot;,
+        &quot;7月&quot;,
+        &quot;8月&quot;,
+        &quot;9月&quot;,
+        &quot;10月&quot;,
+        &quot;11月&quot;,
+        &quot;12月&quot;
+      ],
+      axisTick: {
+        show: false // 去除刻度线
+      },
+      axisLabel: {
+        color: &quot;#4c9bfd&quot; // 文本颜色
+      },
+      axisLine: {
+        show: false // 去除轴线
+      }
+    },
+    yAxis: {
+      type: &quot;value&quot;,
+      axisTick: {
+        show: false // 去除刻度线
+      },
+      axisLabel: {
+        color: &quot;#4c9bfd&quot; // 文本颜色
+      },
+      axisLine: {
+        show: false // 去除轴线
+      },
+      splitLine: {
+        lineStyle: {
+          color: &quot;#012f4a&quot; // 分割线颜色
+        }
+      }
+    },
+    series: [
+      {
+        name: &quot;新增粉丝&quot;,
+        type: &quot;line&quot;,
+        // true 可以让我们的折线显示带有弧度
+        smooth: true,
+        data: yearData[0].data[0]
+      },
+      {
+        name: &quot;新增游客&quot;,
+        type: &quot;line&quot;,
+        smooth: true,
+        data: yearData[0].data[1]
+      }
+    ]
+  };
+
+  // 3. 把配置给实例对象
+  myChart.setOption(option);
+  // 4. 让图表跟随屏幕自动的去适应
+  window.addEventListener(&quot;resize&quot;, function() {
+    myChart.resize();
+  });
+
+  // 5.点击切换效果
+  $(&quot;.line h2&quot;).on(&quot;click&quot;, &quot;a&quot;, function() {
+    // alert(1);
+    // console.log($(this).index());
+    // 点击 a 之后 根据当前a的索引号 找到对应的 yearData的相关对象
+    // console.log(yearData[$(this).index()]);
+    var obj = yearData[$(this).index()];
+    option.series[0].data = obj.data[0];
+    option.series[1].data = obj.data[1];
+    // 需要重新渲染
+    myChart.setOption(option);
+  });
+})();
+</code></pre>
+<h3 id="15-折线图2-播放量模块制作">15-折线图2 播放量模块制作</h3>
+<ul>
+<li>官网找到类似实例， 适当分析，并且引入到HTML页面中</li>
+<li>根据需求定制图表</li>
+</ul>
+<p>需求1： 更换图例组件文字颜色 rgba(255,255,255,.5)  文字大小为12</p>
+<pre><code class="language-javascript"> legend: {
+      top: &quot;0%&quot;,
+      textStyle: {
+        color: &quot;rgba(255,255,255,.5)&quot;,
+        fontSize: &quot;12&quot;
+      }
+},
+</code></pre>
+<p>需求2： 修改图表大小</p>
+<pre><code class="language-javascript">grid: {
+      left: &quot;10&quot;,
+      top: &quot;30&quot;,
+      right: &quot;10&quot;,
+      bottom: &quot;10&quot;,
+      containLabel: true
+    },
+</code></pre>
+<p>需求3： 修改x轴相关配置</p>
+<ul>
+<li>修改文本颜色为rgba(255,255,255,.6)  文字大小为 12</li>
+<li>x轴线的颜色为   rgba(255,255,255,.2)</li>
+</ul>
+<pre><code class="language-javascript">     // 文本颜色为rgba(255,255,255,.6)  文字大小为 12
+     axisLabel: {
+          textStyle: {
+            color: &quot;rgba(255,255,255,.6)&quot;,
+            fontSize: 12
+          }
+        },
+         // x轴线的颜色为   rgba(255,255,255,.2)
+        axisLine: {
+          lineStyle: {
+            color: &quot;rgba(255,255,255,.2)&quot;
+          }
+        },
+</code></pre>
+<p>需求4： 修改y轴的相关配置</p>
+<pre><code class="language-javascript">        axisTick: { show: false },
+        axisLine: {
+          lineStyle: {
+            color: &quot;rgba(255,255,255,.1)&quot;
+          }
+        },
+        axisLabel: {
+          textStyle: {
+            color: &quot;rgba(255,255,255,.6)&quot;,
+            fontSize: 12
+          }
+        },
+	   // 修改分割线的颜色
+        splitLine: {
+          lineStyle: {
+            color: &quot;rgba(255,255,255,.1)&quot;
+          }
+        }
+      
+</code></pre>
+<p>需求5： 修改两个线模块配置(注意在series 里面定制)</p>
+<pre><code class="language-javascript">       //第一条 线是圆滑
+       smooth: true,
+        // 单独修改线的样式
+        lineStyle: {
+            color: &quot;#0184d5&quot;,
+            width: 2 
+        },
+         // 填充区域
+        areaStyle: {
+              // 渐变色，只需要复制即可
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: &quot;rgba(1, 132, 213, 0.4)&quot;   // 渐变色的起始颜色
+                },
+                {
+                  offset: 0.8,
+                  color: &quot;rgba(1, 132, 213, 0.1)&quot;   // 渐变线的结束颜色
+                }
+              ],
+              false
+            ),
+            shadowColor: &quot;rgba(0, 0, 0, 0.1)&quot;
+        },
+        // 设置拐点 小圆点
+        symbol: &quot;circle&quot;,
+        // 拐点大小
+        symbolSize: 8,
+        // 设置拐点颜色以及边框
+       itemStyle: {
+            color: &quot;#0184d5&quot;,
+            borderColor: &quot;rgba(221, 220, 107, .1)&quot;,
+            borderWidth: 12
+        },
+        // 开始不显示拐点， 鼠标经过显示
+        showSymbol: false,
+</code></pre>
+<pre><code class="language-javascript">       name: &quot;转发量&quot;,
+        type: &quot;line&quot;,
+        smooth: true,
+        lineStyle: {
+          normal: {
+            color: &quot;#00d887&quot;,
+            width: 2
+          }
+         },
+         areaStyle: {
+          normal: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: &quot;rgba(0, 216, 135, 0.4)&quot;
+                },
+                {
+                  offset: 0.8,
+                  color: &quot;rgba(0, 216, 135, 0.1)&quot;
+                }
+              ],
+              false
+            ),
+            shadowColor: &quot;rgba(0, 0, 0, 0.1)&quot;
+          }
+        },
+        // 设置拐点 小圆点
+        symbol: &quot;circle&quot;,
+        // 拐点大小
+        symbolSize: 5,
+        // 设置拐点颜色以及边框
+         itemStyle: {
+            color: &quot;#00d887&quot;,
+            borderColor: &quot;rgba(221, 220, 107, .1)&quot;,
+            borderWidth: 12
+        },
+        // 开始不显示拐点， 鼠标经过显示
+        showSymbol: false,
+</code></pre>
+<p>需求6： 更换数据</p>
+<pre><code class="language-javascript">// x轴更换数据
+data: [ &quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;,&quot;05&quot;,&quot;06&quot;,&quot;07&quot;,&quot;08&quot;,&quot;09&quot;,&quot;10&quot;,&quot;11&quot;,&quot;12&quot;,&quot;13&quot;,&quot;14&quot;,&quot;15&quot;,&quot;16&quot;,&quot;17&quot;,&quot;18&quot;,&quot;19&quot;,&quot;20&quot;,&quot;21&quot;,&quot;22&quot;,&quot;23&quot;,&quot;24&quot;,&quot;25&quot;,&quot;26&quot;,&quot;26&quot;,&quot;28&quot;,&quot;29&quot;,&quot;30&quot;],
+// series  第一个对象data数据
+ data: [ 30, 40, 30, 40,30, 40, 30,60,20, 40, 30, 40, 30, 40,30, 40, 30,60,20, 40, 30, 40, 30, 40,30, 40, 20,60,50, 40],
+// series  第二个对象data数据
+ data: [ 130, 10, 20, 40,30, 40, 80,60,20, 40, 90, 40,20, 140,30, 40, 130,20,20, 40, 80, 70, 30, 40,30, 120, 20,99,50, 20],
+
+</code></pre>
+<h3 id="16-饼形图-1年龄分布模块制作">16-饼形图 1年龄分布模块制作</h3>
+<ul>
+<li>官网找到类似实例， 适当分析，并且引入到HTML页面中</li>
+<li>根据需求定制图表</li>
+</ul>
+<p>定制图表需求1：</p>
+<ul>
+<li>修改图例组件在底部并且居中显示。</li>
+<li>每个小图标的宽度和高度修改为 10px</li>
+<li>文字大小为12 颜色  rgba(255,255,255,.5)</li>
+</ul>
+<pre><code class="language-javascript"> legend: {
+      // 距离底部为0%
+      bottom: &quot;0%&quot;,
+      // 小图标的宽度和高度
+      itemWidth: 10,
+      itemHeight: 10,
+      data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
+      // 修改图例组件的文字为 12px
+      textStyle: {
+        color: &quot;rgba(255,255,255,.5)&quot;,
+        fontSize: &quot;12&quot;
+      }
+ },
+</code></pre>
+<p>定制需求2：</p>
+<ul>
+<li>修改水平居中 垂直居中</li>
+<li>修改内圆半径和外圆半径为    [&quot;40%&quot;, &quot;60%&quot;]   pink老师友情提示，带有直角坐标系的比如折线图柱状图是 grid修改图形大小，而我们饼形图是通过 radius 修改大小</li>
+</ul>
+<pre><code class="language-javascript">series: [
+      {
+        name: &quot;年龄分布&quot;,
+        type: &quot;pie&quot;,
+        // 设置饼形图在容器中的位置
+        center: [&quot;50%&quot;, &quot;50%&quot;],
+        //  修改内圆半径和外圆半径为  百分比是相对于容器宽度来说的
+        radius: [&quot;40%&quot;, &quot;60%&quot;],
+        // 不显示标签文字
+        label: { show: false },
+        // 不显示连接线
+        labelLine: { show: false },
+      }
+    ]
+</code></pre>
+<p>定制需求3：更换数据</p>
+<pre><code class="language-javascript">// legend 中的data  可省略
+data: [&quot;0岁以下&quot;, &quot;20-29岁&quot;, &quot;30-39岁&quot;, &quot;40-49岁&quot;, &quot;50岁以上&quot;],
+//  series 中的数据
+ data: [
+          { value: 1, name: &quot;0岁以下&quot; },
+          { value: 4, name: &quot;20-29岁&quot; },
+          { value: 2, name: &quot;30-39岁&quot; },
+          { value: 2, name: &quot;40-49岁&quot; },
+          { value: 1, name: &quot;50岁以上&quot; }
+ ] ,
+</code></pre>
+<p>定制需求4： 更换颜色</p>
+<pre><code class="language-javascript">color: [
+          &quot;#065aab&quot;,
+          &quot;#066eab&quot;,
+          &quot;#0682ab&quot;,
+          &quot;#0696ab&quot;,
+          &quot;#06a0ab&quot;,
+        ],
+</code></pre>
+<pre><code class="language-javascript"> // 4. 让图表跟随屏幕自动的去适应
+  window.addEventListener(&quot;resize&quot;, function() {
+    myChart.resize();
+  });
+</code></pre>
+<h3 id="17-饼形图2-地区分布模块制作南丁格尔玫瑰图">17-饼形图2 地区分布模块制作（南丁格尔玫瑰图）</h3>
+<ul>
+<li>官网找到类似实例， 适当分析，并且引入到HTML页面中</li>
+<li>根据需求定制图表</li>
+</ul>
+<p>第二步：按照需求定制</p>
+<ul>
+<li>需求1：颜色设置</li>
+</ul>
+<pre><code class="language-js">color: ['#006cff', '#60cda0', '#ed8884', '#ff9f7f', '#0096ff', '#9fe6b8', '#32c5e9', '#1d9dff'],
+</code></pre>
+<ul>
+<li>需求2：修改饼形图大小 ( series对象)</li>
+</ul>
+<pre><code class="language-javascript">radius: ['10%', '70%'],
+</code></pre>
+<ul>
+<li>需求3： 把饼形图的显示模式改为 半径模式</li>
+</ul>
+<pre><code class="language-javascript"> roseType: &quot;radius&quot;,
+</code></pre>
+<ul>
+<li>需求4：数据使用更换（series对象 里面 data对象）</li>
+</ul>
+<pre><code class="language-js">          { value: 20, name: '云南' },
+          { value: 26, name: '北京' },
+          { value: 24, name: '山东' },
+          { value: 25, name: '河北' },
+          { value: 20, name: '江苏' },
+          { value: 25, name: '浙江' },
+          { value: 30, name: '四川' },
+          { value: 42, name: '湖北' }
+</code></pre>
+<ul>
+<li>
+<p>需求5：字体略小些  10 px ( series对象里面设置 )</p>
+<p>饼图图形上的文本标签可以控制饼形图的文字的一些样式。   label 对象设置</p>
+</li>
+</ul>
+<pre><code class="language-javascript">series: [
+      {
+        name: &quot;面积模式&quot;,
+        type: &quot;pie&quot;,
+        radius: [30, 110],
+        center: [&quot;50%&quot;, &quot;50%&quot;],
+        roseType: &quot;radius&quot;,
+        // 文本标签控制饼形图文字的相关样式， 注意它是一个对象
+        label: {
+          fontSize: 10
+        },
+      }
+    ]
+  };
+</code></pre>
+<ul>
+<li>需求6：防止缩放的时候，引导线过长。引导线略短些   (series对象里面的  labelLine  对象设置  )
+<ul>
+<li>连接图表 6 px</li>
+<li>连接文字 8 px</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-diff">+        // 文字调整
++        label:{
++          fontSize: 10
++        },
++        // 引导线调整
++        labelLine: {
++          // 连接扇形图线长
++          length: 6,
++          // 连接文字线长
++          length2: 8
++        } 
++      }
++    ],
+
+</code></pre>
+<ul>
+<li>需求6：浏览器缩放的时候，图表跟着自动适配。</li>
+</ul>
+<pre><code class="language-javascript">// 监听浏览器缩放，图表对象调用缩放resize函数
+window.addEventListener(&quot;resize&quot;, function() {
+    myChart.resize();
+  });
+</code></pre>
+<h3 id="18-echarts-社区介绍">18-Echarts-社区介绍</h3>
+<blockquote>
+<p><a href="https://gallery.echartsjs.com/explore.html#sort=rank~timeframe=all~author=all">社区</a>就是一些，活跃的echart使用者，交流和贡献定制好的图表的地方。</p>
+</blockquote>
+<figure data-type="image" tabindex="1"><img src="docs/media/1576664444951.png" alt="1576664444951" loading="lazy"></figure>
+<ul>
+<li>在这里可以找到一些基于echart的高度定制好的图表，相当于基于jquery开发的插件，这里是基于echarts开发的第三方的图表。</li>
+</ul>
+<h3 id="19-echarts-map使用扩展">19-Echarts-map使用（扩展）</h3>
+<p>参考社区的例子：https://gallery.echartsjs.com/editor.html?c=x0-ExSkZDM  (模拟飞机航线)</p>
+<p>实现步骤：</p>
+<ul>
+<li>第一需要下载china.js提供中国地图的js文件</li>
+<li>第二个因为里面代码比较多，我们新建一个新的js文件 myMap.js 引入</li>
+<li>使用社区提供的配置即可。</li>
+</ul>
+<p>需要修改：</p>
+<ul>
+<li>去掉标题组件</li>
+<li>去掉背景颜色</li>
+<li>修改地图省份背景  #142957  areaColor 里面做修改</li>
+<li>地图放大通过  zoom   设置为1.2即可</li>
+</ul>
+<pre><code class="language-javascript">    geo: {
+      map: 'china',
+      zoom: 1.2,
+      label: {
+        emphasis: {
+          show: false
+        }
+      },
+      roam: false,
+      itemStyle: {
+        normal: {
+          areaColor: '#142957',
+          borderColor: '#0692a4'
+        },
+        emphasis: {
+          areaColor: '#0b1c2d'
+        }
+      }
+    },
+</code></pre>
+<p>总结：这例子是扩展案例，大家以后可以多看看社区里面的案例。</p>
+<h3 id="20-最后约束缩放">20- 最后约束缩放</h3>
+<pre><code class="language-css">/* 约束屏幕尺寸 */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 42px !important;
+  }
+}
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 80px !important;
+  }
+}
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://kingshuxin.github.io/post/vue/">
+                  <h3 class="post-title">
+                    Vue
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

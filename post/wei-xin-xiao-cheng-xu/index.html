@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>微信小程序 | Hsx</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://kingshuxin.github.io/favicon.ico?v=1664238670307">
+<link rel="stylesheet" href="https://kingshuxin.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="WXML 模板
+常用的视图容器类组件:
+① view
+
+普通视图区域
+类似于 HTML 中的 div，是一个块级元素
+常用来实现页面的布局效果
+
+② scroll-view
+
+
+可滚动的视图区域
+
+
+常用来实现滚动列表效果
+//注意：使用竖..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://kingshuxin.github.io">
+        <img src="https://kingshuxin.github.io/images/avatar.png?v=1664238670307" class="site-logo">
+        <h1 class="site-title">Hsx</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      Follow your heart.
+    </div>
+    <div class="site-footer">
+      ❤路敏雪 | <a class="rss" href="https://kingshuxin.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">微信小程序</h2>
+            <div class="post-date">2022-09-05</div>
+            
+            <div class="post-content" v-pre>
+              <h2 id="wxml-模板">WXML 模板</h2>
+<p>常用的视图容器类组件:</p>
+<p>① view</p>
+<ul>
+<li>普通视图区域</li>
+<li>类似于 HTML 中的 div，是一个块级元素</li>
+<li>常用来实现页面的布局效果</li>
+</ul>
+<p>② scroll-view</p>
+<ul>
+<li>
+<p>可滚动的视图区域</p>
+</li>
+<li>
+<p>常用来实现滚动列表效果</p>
+<pre><code class="language-js">//注意：使用竖向滚动时，必须给scroll-view设置固定高度
+scroll-y//允许纵向滚动
+scroll-x//允许横向滚动
+</code></pre>
+</li>
+</ul>
+<p>③text</p>
+<ul>
+<li>类似于 HTML 中的 span 标签，是一个行内元素</li>
+<li>selectable 属性，实现长按选中文本内容的效果</li>
+</ul>
+<p>④button</p>
+<ul>
+<li>通过 open-type 属性调用微信提供的各种功能（客服、转发、获取用户授权、获取用户信息等）</li>
+</ul>
+<pre><code class="language-javascript">type //指定按钮类型
+size //控制按钮尺寸
+plain //镂空按钮
+</code></pre>
+<p>⑤image</p>
+<ul>
+<li>image 组件默认宽度约 300px、高度约 240px</li>
+<li>mode 属性用来指定图片的裁剪和缩放模式</li>
+</ul>
+<p>⑥navigator</p>
+<ul>
+<li>页面导航组件，类似于 HTML 中的 a 链接</li>
+</ul>
+<h3 id="wxml-模板语法-数据绑定">WXML 模板语法-<strong>数据绑定</strong></h3>
+<ol>
+<li><strong>基本原则</strong></li>
+</ol>
+<p>① 在 data 中定义数据</p>
+<p>​	在页面对应的 .js 文件中，把数据定义到 data 对象中即可</p>
+<pre><code class="language-javascript">Page({
+  data: {
+    //字符串类型的数据
+    info: 'hsx',
+    //数组类型的数据
+    msglist: [{msg: 'hsx'},{msg: 'lmx'}]
+  },
+})
+</code></pre>
+<p>② 在 WXML 中使用数据</p>
+<ul>
+<li><strong>动态绑定内容</strong></li>
+</ul>
+<pre><code class="language-javascript">&lt;text&gt;{{ info }}&lt;/text&gt;
+</code></pre>
+<ul>
+<li><strong>动态绑定属性</strong></li>
+</ul>
+<pre><code class="language-javascript">&lt;image src=&quot;{{ imgsrc }}&quot;&gt;&lt;/image&gt;
+</code></pre>
+<h3 id="wxml-模板语法-事件绑定"><strong>WXML 模板语法 - 事件绑定</strong></h3>
+<p>①bindtap</p>
+<ul>
+<li>类似于HTML中的click实践</li>
+</ul>
+<p><strong>this.setData(dataObject)</strong> 给页面 data 中的数据重新赋值</p>
+<pre><code class="language-js">handleClick (){
+    this.setData({
+      count: this.data.count++
+    })
+}
+</code></pre>
+<p>事件传参：</p>
+<p><em><em>data-</em> 自定义属性传参</em>*     * 代表的是参数的名字</p>
+<p><strong>event.target.dataset.参数名</strong>   即可获取到具体参数的值</p>
+<pre><code class="language-js">&lt;button type=&quot;primary&quot; bindtap=&quot;handleClick&quot; data-info=&quot;{{2}}&quot;&gt;点击&lt;/button&gt;
+</code></pre>
+<pre><code class="language-js">handleClick (event){
+    console.log(event.target.dataset.info);
+ },
+</code></pre>
+<p>②bindinput</p>
+<ul>
+<li>文本框的输入事件</li>
+</ul>
+<pre><code class="language-javascript">handleInput (e){
+    console.log(e.detail.value);//输入后最新的value值
+}
+</code></pre>
+<h3 id="wxml-模板语法-条件渲染"><strong>WXML 模板语法 -</strong> <strong>条件渲染</strong></h3>
+<p><strong>1.wx:if、wx:elif 、wx:else</strong></p>
+<p>类比if、else if、 else</p>
+<p><strong>2. 结合 <block> 使用 wx:if</strong></p>
+<p><block> 并不是一个组件，它只是一个包裹性质的容器，不会在页面中做任何渲染。</p>
+<p><strong>3. hidden</strong></p>
+<p>控制元素的显示与隐藏</p>
+<h3 id="wxml-模板语法-列表渲染"><strong>WXML 模板语法 -</strong> <strong>列表渲染</strong></h3>
+<pre><code class="language-js">&lt;view wx:for=&quot;arr&quot;&gt;
+  当前索引是{{index}}
+  当前循环项{{item}}
+&lt;/view&gt;
+</code></pre>
+<ul>
+<li>
+<p>默认情况下，当前循环项的索引用 index 表示；当前循环项用 item 表示。</p>
+</li>
+<li>
+<p>使用 wx:for-index 可以指定当前循环项的索引的变量名</p>
+</li>
+<li>
+<p>使用 wx:for-item 可以指定当前项的变量名</p>
+</li>
+</ul>
+<h2 id="全局配置"><strong>全局配置</strong></h2>
+<p>全局配置文件<strong>app.json</strong></p>
+<p>① pages  记录当前小程序所有页面的存放路径</p>
+<p>② window  全局设置小程序窗口的外观</p>
+<ul>
+<li>navigationBarTitleText 	导航栏标题文字内容</li>
+<li>navigationBarBackgroundColor   导航栏背景颜色</li>
+<li>navigationBarTextStyle   导航栏标题颜色，仅支持 black / white</li>
+<li>backgroundColor   下拉刷新窗口背景色</li>
+<li>backgroundTextStyle   下拉 loading 的样式，仅支持 dark / light</li>
+<li>enablePullDownRefresh	是否全局开启下拉刷新</li>
+<li>onReachBottomDistance   页面上拉触底事件触发时距页面底部距离，单位为px</li>
+</ul>
+<p>③ tabBar  设置小程序底部的 tabBar 效果<br>
+<img src="https://kingshuxin.github.io/post-images/1663900176949.png" alt="" loading="lazy"><br>
+④ style  是否启用新版的组件样式<br>
+<img src="https://kingshuxin.github.io/post-images/1662450496627.png" alt="" loading="lazy"></p>
+<h2 id="网络数据请求"><strong>网络数据请求</strong></h2>
+<ol>
+<li>只能请求 HTTPS 类型的接口</li>
+<li>必须将接口的域名添加到信任列表中</li>
+</ol>
+<p><strong>wx.request()</strong>   发起 GET或POST 数据请求</p>
+<p>在页面刚加载的时候，自动请求一些初始化的数据。此时需要在页面的 <strong>onLoad</strong> 事件<br>
+中调用获取数据的函数</p>
+<h2 id="页面导航">页面导航</h2>
+<p>小程序中实现页面导航的两种方式：</p>
+<ol>
+<li>声明式导航<br>
+<img src="https://kingshuxin.github.io/post-images/1663900374803.png" alt="" loading="lazy"></li>
+</ol>
+<ul>
+<li>
+<p>url 表示要跳转的页面的地址，必须以 / 开头</p>
+</li>
+<li>
+<p>open-type 表示跳转的方式，</p>
+<p>①switchTab（导航到 tabBar 页面）</p>
+<p>②navigate（导航到非 tabBar 页面，可以省略）</p>
+<p>③navigateBack（后退导航）		delta 的值必须是数字，表示要后退的层级</p>
+</li>
+</ul>
+<ol>
+<li>编程式导航</li>
+</ol>
+<p><strong>wx.switchTab(Object object)</strong>   跳转到 tabBar 页面</p>
+<ul>
+<li>url 需要跳转的 tabBar 页面的路径，路径后不能带参数</li>
+<li>success   接口调用成功的回调函数</li>
+<li>fail    接口调用失败的回调函数</li>
+<li>complete   接口调用结束的回调函数（调用成功、失败都会执行）</li>
+</ul>
+<p><strong>wx.navigateTo</strong>   跳转到非 tabBar 的页面</p>
+<p><strong>wx.navigateBack(Object object)</strong>  返回导航，delta 返回的页面数，如果 delta 大于现有页面数，则返回到首页<br>
+<img src="https://kingshuxin.github.io/post-images/1663900509333.png" alt="" loading="lazy"></p>
+<h3 id="页面导航-导航传参">页面导航 - 导航传参</h3>
+<ol>
+<li>声明式导航传参</li>
+</ol>
+<p><img src="https://kingshuxin.github.io/post-images/1663900543066.png" alt="" loading="lazy">!</p>
+<ul>
+<li>参数与路径之间使用 ? 分隔</li>
+<li>参数键与参数值用 = 相连</li>
+<li>不同参数用 &amp; 分隔</li>
+</ul>
+<p>在 <strong>onLoad 事件</strong>中直接获取到</p>
+<figure data-type="image" tabindex="1"><img src="https://kingshuxin.github.io/post-images/1663900576954.png" alt="" loading="lazy"></figure>
+<h3 id="页面事件-下拉刷新事件">页面事件 - 下拉刷新事件</h3>
+<p><strong>wx.onPullDownRefresh()</strong> **   监听页面的下拉刷新事件</p>
+<p><strong>wx.stopPullDownRefresh()</strong>    可以停止当前页面的下拉刷新</p>
+<figure data-type="image" tabindex="2"><img src="https://kingshuxin.github.io/post-images/1663900597540.png" alt="" loading="lazy"></figure>
+<h3 id="页面事件-上拉触底事件">页面事件 - 上拉触底事件</h3>
+<p><strong>wx.onReachBottom()</strong> 函数即可监听当前页面的上拉触底事件</p>
+<p><strong>onReachBottomDistance</strong> 	配置上拉触底的距离</p>
+<h2 id="生命周期">生命周期</h2>
+<p>小程序的应用生命周期函数需要在 app.js 中进行声明</p>
+<figure data-type="image" tabindex="3"><img src="https://kingshuxin.github.io/post-images/1663900615712.png" alt="" loading="lazy"></figure>
+<p>小程序的页面生命周期函数需要在页面的 .js 文件中进行声明</p>
+<figure data-type="image" tabindex="4"><img src="https://kingshuxin.github.io/post-images/1663900632685.png" alt="" loading="lazy"></figure>
+<h2 id="wxs-脚本">WXS 脚本</h2>
+<p>小程序独有的一套脚本语言，典型应用场景就是“过滤器”</p>
+<ol>
+<li>内嵌 wxs 脚本</li>
+</ol>
+<p><img src="https://kingshuxin.github.io/post-images/1663900659579.png" alt="" loading="lazy"><br>
+2. 外联的 wxs 脚本</p>
+<p>定义：</p>
+<figure data-type="image" tabindex="5"><img src="https://kingshuxin.github.io/post-images/1663900683762.png" alt="" loading="lazy"></figure>
+<p>使用：<br>
+<img src="https://kingshuxin.github.io/post-images/1663900703778.png" alt="" loading="lazy"></p>
+<h2 id="自定义组件">自定义组件</h2>
+<h3 id="引用组件">引用组件</h3>
+<ol>
+<li>局部引用<img src="https://kingshuxin.github.io/post-images/1663900732995.png" alt="" loading="lazy"></li>
+<li>全局引用<img src="https://kingshuxin.github.io/post-images/1663900760228.png" alt="" loading="lazy"></li>
+</ol>
+<p><strong>组件和页面的区别</strong></p>
+<ul>
+<li>组件的 .json 文件中需要声明 &quot;component&quot;: true 属性</li>
+<li>组件的 .js 文件中调用的是 Component() 函数</li>
+<li>组件的事件处理函数需要定义到 methods 节点中</li>
+</ul>
+<h3 id="自定义组件-数据-方法和属性">自定义组件 - 数据、方法和属性</h3>
+<ol>
+<li>
+<p>data ——用于组件模板渲染的私有数据</p>
+</li>
+<li>
+<p>methods——事件处理函数和自定义方法</p>
+</li>
+<li>
+<p>properties——接收外界传递到组件中的数据</p>
+</li>
+</ol>
+<p>使用 setData 可修改 properties 的值<br>
+<img src="https://kingshuxin.github.io/post-images/1663900781240.png" alt="" loading="lazy"></p>
+<h3 id="自定义组件-数据监听器">自定义组件 - 数据监听器</h3>
+<p>监听和响应任何属性和数据字段的变化，从而执行特定的操作</p>
+<figure data-type="image" tabindex="6"><img src="https://kingshuxin.github.io/post-images/1663900803671.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://kingshuxin.github.io/post-images/1663900822175.png" alt="" loading="lazy"></figure>
+<h3 id="自定义组件-纯数据字段">自定义组件 - 纯数据字段</h3>
+<p>概念：纯数据字段指的是那些不用于界面渲染的 data 字段。</p>
+<p>Component 构造器的 options 节点中，指定 pureDataPattern 为一个正则表达式，字段名符合这个正则<br>
+表达式的字段将成为纯数据字段</p>
+<figure data-type="image" tabindex="8"><img src="https://kingshuxin.github.io/post-images/1663901012529.png" alt="" loading="lazy"></figure>
+<h3 id="自定义组件-组件的生命周期">自定义组件 - 组件的生命周期</h3>
+<ol>
+<li>created	在组件实例刚刚被创建时执行</li>
+<li>attached    在组件实例进入页面节点树时执行</li>
+<li>ready   在组件在视图层布局完成后执行</li>
+<li>moved   在组件实例被移动到节点树另一个位置时执行</li>
+<li>detached   在组件实例被从页面节点树移除时执行</li>
+<li>error   每当组件方法抛出错误时执行</li>
+</ol>
+<p>** lifetimes 节点**<br>
+<img src="https://kingshuxin.github.io/post-images/1663901049731.png" alt="" loading="lazy"></p>
+<h3 id="自定义组件-组件所在页面的生命周期">自定义组件 - 组件所在页面的生命周期</h3>
+<ul>
+<li>show   组件所在的页面被展示时执行</li>
+<li>hide   组件所在的页面被隐藏时执行</li>
+<li>resize   组件所在的页面尺寸变化时执行</li>
+</ul>
+<p><strong>pageLifetimes 节点</strong></p>
+<figure data-type="image" tabindex="9"><img src="https://kingshuxin.github.io/post-images/1663901185178.png" alt="" loading="lazy"></figure>
+<h3 id="自定义组件-插槽">自定义组件 - 插槽</h3>
+<p>在自定义组件的 wxml 结构中，可以提供一个 <slot> 节点（插槽），用于承载组件使用者提供的 wxml 结构。</p>
+<figure data-type="image" tabindex="10"><img src="https://kingshuxin.github.io/post-images/1663901403709.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="11"><img src="https://kingshuxin.github.io/post-images/1663901428966.png" alt="" loading="lazy"></figure>
+<p><strong>多个插槽</strong></p>
+<ol>
+<li>启用：<img src="https://kingshuxin.github.io/post-images/1663901452032.png" alt="" loading="lazy"></li>
+<li>定义<img src="https://kingshuxin.github.io/post-images/1663901469198.png" alt="" loading="lazy"></li>
+<li>使用<img src="https://kingshuxin.github.io/post-images/1663901483191.png" alt="" loading="lazy"></li>
+</ol>
+<h3 id="自定义组件-父子组件之间的通信">自定义组件 - 父子组件之间的通信</h3>
+<ol>
+<li>属性绑定（父传子）</li>
+</ol>
+<p><img src="https://kingshuxin.github.io/post-images/1663901533985.png" alt="" loading="lazy"><br>
+<img src="https://kingshuxin.github.io/post-images/1663901563774.png" alt="" loading="lazy"></p>
+<ol>
+<li>事件绑定（子传父）</li>
+</ol>
+<p>①父组件中定义</p>
+<figure data-type="image" tabindex="12"><img src="https://kingshuxin.github.io/post-images/1663901598312.png" alt="" loading="lazy"></figure>
+<p>②自定义事件传递给子组件</p>
+<figure data-type="image" tabindex="13"><img src="https://kingshuxin.github.io/post-images/1663901658483.png" alt="" loading="lazy"></figure>
+<p>③子组件调用 this.triggerEvent(‘自定义事件名称’, { /* 参数对象 */ })</p>
+<figure data-type="image" tabindex="14"><img src="https://kingshuxin.github.io/post-images/1663901676681.png" alt="" loading="lazy"></figure>
+<p>④父组件e.detail 获取到子组件传递过来的数据</p>
+<figure data-type="image" tabindex="15"><img src="https://kingshuxin.github.io/post-images/1663901694206.png" alt="" loading="lazy"></figure>
+<ol>
+<li>获取组件实例</li>
+</ol>
+<p>父组件里调用 this.selectComponent(&quot;id或class选择器&quot;) ，获取子组件的实例对象</p>
+<h3 id="自定义组件-behaviors">自定义组件 - behaviors</h3>
+<p>用于实现组件间代码共享的特性，类似于 Vue.js 中的 “mixins”</p>
+<p>①创建 behavior</p>
+<figure data-type="image" tabindex="16"><img src="https://kingshuxin.github.io/post-images/1663901711328.png" alt="" loading="lazy"></figure>
+<p>②导入并使用 behavior</p>
+<figure data-type="image" tabindex="17"><img src="https://kingshuxin.github.io/post-images/1663901727807.png" alt="" loading="lazy"></figure>
+<h2 id="全局数据共享">全局数据共享</h2>
+<figure data-type="image" tabindex="18"><img src="https://kingshuxin.github.io/post-images/1663901746541.png" alt="" loading="lazy"></figure>
+<p><strong>mobx-miniprogram</strong>  创建 Store 实例对象</p>
+<p><strong>mobx-miniprogram-bindings</strong>   把 Store 中的共享数据或方法，绑定到组件或页面中使用</p>
+<p>①创建 MobX 的 Store 实例</p>
+<p><img src="https://kingshuxin.github.io/post-images/1663901766638.png" alt="" loading="lazy"><br>
+②将 Store 中的成员绑定到页面中</p>
+<p><img src="https://kingshuxin.github.io/post-images/1663901790297.png" alt="" loading="lazy"><br>
+③在页面上使用 Store 中的成员</p>
+<figure data-type="image" tabindex="19"><img src="https://kingshuxin.github.io/post-images/1663901807197.png" alt="" loading="lazy"></figure>
+<p>④将 Store 中的成员绑定到组件中<br>
+<img src="https://kingshuxin.github.io/post-images/1663901837742.png" alt="" loading="lazy"></p>
+<p>⑤在组件中使用 Store 中的成员</p>
+<p><img src="https://kingshuxin.github.io/post-images/1663901861003.png" alt="" loading="lazy">![image-20220905151726601]</p>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://kingshuxin.github.io/post/e-charts/">
+                  <h3 class="post-title">
+                    E-charts
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
